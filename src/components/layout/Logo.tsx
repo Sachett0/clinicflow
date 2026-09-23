@@ -1,6 +1,6 @@
 import { Activity } from "lucide-react";
 
-export function Logo({ compact = false }: { compact?: boolean }) {
+export function Logo({ compact = false }: { compact?: boolean | undefined }) {
   return (
     <span className="flex items-center gap-2">
       <span className="flex size-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
