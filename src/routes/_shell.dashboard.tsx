@@ -122,7 +122,7 @@ function DashboardPage() {
             <BlockSkeleton className="h-64" />
           ) : (
             <ResponsiveContainer width="100%" height={260}>
-              <BarChart data={series.data}>
+              <BarChart data={series.data ?? []}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--color-border)" />
                 <XAxis dataKey="day" stroke="var(--color-muted-foreground)" fontSize={12} tickLine={false} axisLine={false} />
                 <YAxis stroke="var(--color-muted-foreground)" fontSize={12} tickLine={false} axisLine={false} />
@@ -146,7 +146,7 @@ function DashboardPage() {
             <BlockSkeleton className="h-64" />
           ) : (
             <ResponsiveContainer width="100%" height={260}>
-              <AreaChart data={revenue.data}>
+              <AreaChart data={revenue.data ?? []}>
                 <defs>
                   <linearGradient id="rev" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor="var(--color-chart-1)" stopOpacity={0.35} />
