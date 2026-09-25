@@ -105,7 +105,7 @@ export interface Appointment extends TenantScoped {
   start: string; // HH:mm
   durationMinutes: number;
   status: AppointmentStatus;
-  notes?: string;
+  notes?: string | undefined;
 }
 
 export type RecordType = "avaliacao" | "evolucao" | "documento" | "plano";

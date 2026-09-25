@@ -13,6 +13,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ShellRouteImport } from './routes/_shell'
 import { Route as ShellAgendaRouteImport } from './routes/_shell.agenda'
 import { Route as ShellDashboardRouteImport } from './routes/_shell.dashboard'
+import { Route as ShellPacientesIndexRouteImport } from './routes/_shell.pacientes.index'
+import { Route as ShellPacientesIdRouteImport } from './routes/_shell.pacientes.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -33,16 +35,30 @@ const ShellDashboardRoute = ShellDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => ShellRoute,
 } as any)
+const ShellPacientesIndexRoute = ShellPacientesIndexRouteImport.update({
+  id: '/pacientes/',
+  path: '/pacientes/',
+  getParentRoute: () => ShellRoute,
+} as any)
+const ShellPacientesIdRoute = ShellPacientesIdRouteImport.update({
+  id: '/pacientes/$id',
+  path: '/pacientes/$id',
+  getParentRoute: () => ShellRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/agenda': typeof ShellAgendaRoute
   '/dashboard': typeof ShellDashboardRoute
+  '/pacientes/$id': typeof ShellPacientesIdRoute
+  '/pacientes/': typeof ShellPacientesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/agenda': typeof ShellAgendaRoute
   '/dashboard': typeof ShellDashboardRoute
+  '/pacientes/$id': typeof ShellPacientesIdRoute
+  '/pacientes': typeof ShellPacientesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -50,13 +66,22 @@ export interface FileRoutesById {
   '/_shell': typeof ShellRouteWithChildren
   '/_shell/agenda': typeof ShellAgendaRoute
   '/_shell/dashboard': typeof ShellDashboardRoute
+  '/_shell/pacientes/$id': typeof ShellPacientesIdRoute
+  '/_shell/pacientes/': typeof ShellPacientesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/agenda' | '/dashboard'
+  fullPaths: '/' | '/agenda' | '/dashboard' | '/pacientes/$id' | '/pacientes/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/agenda' | '/dashboard'
-  id: '__root__' | '/' | '/_shell' | '/_shell/agenda' | '/_shell/dashboard'
+  to: '/' | '/agenda' | '/dashboard' | '/pacientes/$id' | '/pacientes'
+  id:
+    | '__root__'
+    | '/'
+    | '/_shell'
+    | '/_shell/agenda'
+    | '/_shell/dashboard'
+    | '/_shell/pacientes/$id'
+    | '/_shell/pacientes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -94,17 +119,35 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShellDashboardRouteImport
       parentRoute: typeof ShellRoute
     }
+    '/_shell/pacientes/': {
+      id: '/_shell/pacientes/'
+      path: '/pacientes'
+      fullPath: '/pacientes/'
+      preLoaderRoute: typeof ShellPacientesIndexRouteImport
+      parentRoute: typeof ShellRoute
+    }
+    '/_shell/pacientes/$id': {
+      id: '/_shell/pacientes/$id'
+      path: '/pacientes/$id'
+      fullPath: '/pacientes/$id'
+      preLoaderRoute: typeof ShellPacientesIdRouteImport
+      parentRoute: typeof ShellRoute
+    }
   }
 }
 
 interface ShellRouteChildren {
   ShellAgendaRoute: typeof ShellAgendaRoute
   ShellDashboardRoute: typeof ShellDashboardRoute
+  ShellPacientesIdRoute: typeof ShellPacientesIdRoute
+  ShellPacientesIndexRoute: typeof ShellPacientesIndexRoute
 }
 
 const ShellRouteChildren: ShellRouteChildren = {
   ShellAgendaRoute: ShellAgendaRoute,
   ShellDashboardRoute: ShellDashboardRoute,
+  ShellPacientesIdRoute: ShellPacientesIdRoute,
+  ShellPacientesIndexRoute: ShellPacientesIndexRoute,
 }
 
 const ShellRouteWithChildren = ShellRoute._addFileChildren(ShellRouteChildren)
