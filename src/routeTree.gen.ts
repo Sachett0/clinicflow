@@ -12,9 +12,13 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ShellRouteImport } from './routes/_shell'
 import { Route as ShellAgendaRouteImport } from './routes/_shell.agenda'
+import { Route as ShellAssinaturasRouteImport } from './routes/_shell.assinaturas'
 import { Route as ShellAvaliacoesRouteImport } from './routes/_shell.avaliacoes'
+import { Route as ShellComunicacaoRouteImport } from './routes/_shell.comunicacao'
 import { Route as ShellDashboardRouteImport } from './routes/_shell.dashboard'
+import { Route as ShellDocumentosRouteImport } from './routes/_shell.documentos'
 import { Route as ShellEvolucoesRouteImport } from './routes/_shell.evolucoes'
+import { Route as ShellFinanceiroRouteImport } from './routes/_shell.financeiro'
 import { Route as ShellPlanosRouteImport } from './routes/_shell.planos'
 import { Route as ShellProntuariosRouteImport } from './routes/_shell.prontuarios'
 import { Route as ShellPacientesIndexRouteImport } from './routes/_shell.pacientes.index'
@@ -34,9 +38,19 @@ const ShellAgendaRoute = ShellAgendaRouteImport.update({
   path: '/agenda',
   getParentRoute: () => ShellRoute,
 } as any)
+const ShellAssinaturasRoute = ShellAssinaturasRouteImport.update({
+  id: '/assinaturas',
+  path: '/assinaturas',
+  getParentRoute: () => ShellRoute,
+} as any)
 const ShellAvaliacoesRoute = ShellAvaliacoesRouteImport.update({
   id: '/avaliacoes',
   path: '/avaliacoes',
+  getParentRoute: () => ShellRoute,
+} as any)
+const ShellComunicacaoRoute = ShellComunicacaoRouteImport.update({
+  id: '/comunicacao',
+  path: '/comunicacao',
   getParentRoute: () => ShellRoute,
 } as any)
 const ShellDashboardRoute = ShellDashboardRouteImport.update({
@@ -44,9 +58,19 @@ const ShellDashboardRoute = ShellDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => ShellRoute,
 } as any)
+const ShellDocumentosRoute = ShellDocumentosRouteImport.update({
+  id: '/documentos',
+  path: '/documentos',
+  getParentRoute: () => ShellRoute,
+} as any)
 const ShellEvolucoesRoute = ShellEvolucoesRouteImport.update({
   id: '/evolucoes',
   path: '/evolucoes',
+  getParentRoute: () => ShellRoute,
+} as any)
+const ShellFinanceiroRoute = ShellFinanceiroRouteImport.update({
+  id: '/financeiro',
+  path: '/financeiro',
   getParentRoute: () => ShellRoute,
 } as any)
 const ShellPlanosRoute = ShellPlanosRouteImport.update({
@@ -73,9 +97,13 @@ const ShellPacientesIdRoute = ShellPacientesIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/agenda': typeof ShellAgendaRoute
+  '/assinaturas': typeof ShellAssinaturasRoute
   '/avaliacoes': typeof ShellAvaliacoesRoute
+  '/comunicacao': typeof ShellComunicacaoRoute
   '/dashboard': typeof ShellDashboardRoute
+  '/documentos': typeof ShellDocumentosRoute
   '/evolucoes': typeof ShellEvolucoesRoute
+  '/financeiro': typeof ShellFinanceiroRoute
   '/planos': typeof ShellPlanosRoute
   '/prontuarios': typeof ShellProntuariosRoute
   '/pacientes/$id': typeof ShellPacientesIdRoute
@@ -84,9 +112,13 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/agenda': typeof ShellAgendaRoute
+  '/assinaturas': typeof ShellAssinaturasRoute
   '/avaliacoes': typeof ShellAvaliacoesRoute
+  '/comunicacao': typeof ShellComunicacaoRoute
   '/dashboard': typeof ShellDashboardRoute
+  '/documentos': typeof ShellDocumentosRoute
   '/evolucoes': typeof ShellEvolucoesRoute
+  '/financeiro': typeof ShellFinanceiroRoute
   '/planos': typeof ShellPlanosRoute
   '/prontuarios': typeof ShellProntuariosRoute
   '/pacientes/$id': typeof ShellPacientesIdRoute
@@ -97,9 +129,13 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/_shell': typeof ShellRouteWithChildren
   '/_shell/agenda': typeof ShellAgendaRoute
+  '/_shell/assinaturas': typeof ShellAssinaturasRoute
   '/_shell/avaliacoes': typeof ShellAvaliacoesRoute
+  '/_shell/comunicacao': typeof ShellComunicacaoRoute
   '/_shell/dashboard': typeof ShellDashboardRoute
+  '/_shell/documentos': typeof ShellDocumentosRoute
   '/_shell/evolucoes': typeof ShellEvolucoesRoute
+  '/_shell/financeiro': typeof ShellFinanceiroRoute
   '/_shell/planos': typeof ShellPlanosRoute
   '/_shell/prontuarios': typeof ShellProntuariosRoute
   '/_shell/pacientes/$id': typeof ShellPacientesIdRoute
@@ -110,9 +146,13 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/agenda'
+    | '/assinaturas'
     | '/avaliacoes'
+    | '/comunicacao'
     | '/dashboard'
+    | '/documentos'
     | '/evolucoes'
+    | '/financeiro'
     | '/planos'
     | '/prontuarios'
     | '/pacientes/$id'
@@ -121,9 +161,13 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/agenda'
+    | '/assinaturas'
     | '/avaliacoes'
+    | '/comunicacao'
     | '/dashboard'
+    | '/documentos'
     | '/evolucoes'
+    | '/financeiro'
     | '/planos'
     | '/prontuarios'
     | '/pacientes/$id'
@@ -133,9 +177,13 @@ export interface FileRouteTypes {
     | '/'
     | '/_shell'
     | '/_shell/agenda'
+    | '/_shell/assinaturas'
     | '/_shell/avaliacoes'
+    | '/_shell/comunicacao'
     | '/_shell/dashboard'
+    | '/_shell/documentos'
     | '/_shell/evolucoes'
+    | '/_shell/financeiro'
     | '/_shell/planos'
     | '/_shell/prontuarios'
     | '/_shell/pacientes/$id'
@@ -170,11 +218,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShellAgendaRouteImport
       parentRoute: typeof ShellRoute
     }
+    '/_shell/assinaturas': {
+      id: '/_shell/assinaturas'
+      path: '/assinaturas'
+      fullPath: '/assinaturas'
+      preLoaderRoute: typeof ShellAssinaturasRouteImport
+      parentRoute: typeof ShellRoute
+    }
     '/_shell/avaliacoes': {
       id: '/_shell/avaliacoes'
       path: '/avaliacoes'
       fullPath: '/avaliacoes'
       preLoaderRoute: typeof ShellAvaliacoesRouteImport
+      parentRoute: typeof ShellRoute
+    }
+    '/_shell/comunicacao': {
+      id: '/_shell/comunicacao'
+      path: '/comunicacao'
+      fullPath: '/comunicacao'
+      preLoaderRoute: typeof ShellComunicacaoRouteImport
       parentRoute: typeof ShellRoute
     }
     '/_shell/dashboard': {
@@ -184,11 +246,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShellDashboardRouteImport
       parentRoute: typeof ShellRoute
     }
+    '/_shell/documentos': {
+      id: '/_shell/documentos'
+      path: '/documentos'
+      fullPath: '/documentos'
+      preLoaderRoute: typeof ShellDocumentosRouteImport
+      parentRoute: typeof ShellRoute
+    }
     '/_shell/evolucoes': {
       id: '/_shell/evolucoes'
       path: '/evolucoes'
       fullPath: '/evolucoes'
       preLoaderRoute: typeof ShellEvolucoesRouteImport
+      parentRoute: typeof ShellRoute
+    }
+    '/_shell/financeiro': {
+      id: '/_shell/financeiro'
+      path: '/financeiro'
+      fullPath: '/financeiro'
+      preLoaderRoute: typeof ShellFinanceiroRouteImport
       parentRoute: typeof ShellRoute
     }
     '/_shell/planos': {
@@ -224,9 +300,13 @@ declare module '@tanstack/react-router' {
 
 interface ShellRouteChildren {
   ShellAgendaRoute: typeof ShellAgendaRoute
+  ShellAssinaturasRoute: typeof ShellAssinaturasRoute
   ShellAvaliacoesRoute: typeof ShellAvaliacoesRoute
+  ShellComunicacaoRoute: typeof ShellComunicacaoRoute
   ShellDashboardRoute: typeof ShellDashboardRoute
+  ShellDocumentosRoute: typeof ShellDocumentosRoute
   ShellEvolucoesRoute: typeof ShellEvolucoesRoute
+  ShellFinanceiroRoute: typeof ShellFinanceiroRoute
   ShellPlanosRoute: typeof ShellPlanosRoute
   ShellProntuariosRoute: typeof ShellProntuariosRoute
   ShellPacientesIdRoute: typeof ShellPacientesIdRoute
@@ -235,9 +315,13 @@ interface ShellRouteChildren {
 
 const ShellRouteChildren: ShellRouteChildren = {
   ShellAgendaRoute: ShellAgendaRoute,
+  ShellAssinaturasRoute: ShellAssinaturasRoute,
   ShellAvaliacoesRoute: ShellAvaliacoesRoute,
+  ShellComunicacaoRoute: ShellComunicacaoRoute,
   ShellDashboardRoute: ShellDashboardRoute,
+  ShellDocumentosRoute: ShellDocumentosRoute,
   ShellEvolucoesRoute: ShellEvolucoesRoute,
+  ShellFinanceiroRoute: ShellFinanceiroRoute,
   ShellPlanosRoute: ShellPlanosRoute,
   ShellProntuariosRoute: ShellProntuariosRoute,
   ShellPacientesIdRoute: ShellPacientesIdRoute,
