@@ -1,0 +1,4 @@
+# Mantém finais de linha no padrão Unix (LF) mesmo no Windows,
+# como o Prettier do projeto exige.
+* text=auto eol=lf
+*.ico binary
