@@ -25,9 +25,15 @@ export const Route = createFileRoute("/_shell/pacientes/")({
   head: () => ({
     meta: [
       { title: "Pacientes · ClinicFlow" },
-      { name: "description", content: "Cadastro de pacientes com filtros, histórico e próximos atendimentos." },
+      {
+        name: "description",
+        content: "Cadastro de pacientes com filtros, histórico e próximos atendimentos.",
+      },
       { property: "og:title", content: "Pacientes · ClinicFlow" },
-      { property: "og:description", content: "Gerencie o cadastro completo dos pacientes da clínica." },
+      {
+        property: "og:description",
+        content: "Gerencie o cadastro completo dos pacientes da clínica.",
+      },
     ],
   }),
   component: PatientsPage,
@@ -42,7 +48,10 @@ function PatientsPage() {
   const [page, setPage] = useState(1);
 
   const patients = useQuery({ queryKey: ["patients"], queryFn: patientService.list });
-  const professionals = useQuery({ queryKey: ["professionals"], queryFn: professionalService.list });
+  const professionals = useQuery({
+    queryKey: ["professionals"],
+    queryFn: professionalService.list,
+  });
 
   const filtered = useMemo(() => {
     return (patients.data ?? []).filter(
@@ -81,7 +90,9 @@ function PatientsPage() {
             />
           </div>
           <Select value={status} onValueChange={setStatus}>
-            <SelectTrigger className="sm:w-44"><SelectValue /></SelectTrigger>
+            <SelectTrigger className="sm:w-44">
+              <SelectValue />
+            </SelectTrigger>
             <SelectContent>
               <SelectItem value="todos">Todos os status</SelectItem>
               <SelectItem value="ativo">Ativos</SelectItem>
@@ -90,11 +101,15 @@ function PatientsPage() {
             </SelectContent>
           </Select>
           <Select value={professional} onValueChange={setProfessional}>
-            <SelectTrigger className="sm:w-56"><SelectValue /></SelectTrigger>
+            <SelectTrigger className="sm:w-56">
+              <SelectValue />
+            </SelectTrigger>
             <SelectContent>
               <SelectItem value="todos">Todos profissionais</SelectItem>
               {(professionals.data ?? []).map((p) => (
-                <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>
+                <SelectItem key={p.id} value={p.id}>
+                  {p.name}
+                </SelectItem>
               ))}
             </SelectContent>
           </Select>
@@ -132,7 +147,11 @@ function PatientsPage() {
                   {rows.map((p) => (
                     <tr key={p.id} className="transition-colors hover:bg-muted/40">
                       <td className="px-5 py-3">
-                        <Link to="/pacientes/$id" params={{ id: p.id }} className="flex items-center gap-3">
+                        <Link
+                          to="/pacientes/$id"
+                          params={{ id: p.id }}
+                          className="flex items-center gap-3"
+                        >
                           <PatientAvatar name={p.name} tone={p.avatarTone} size="sm" />
                           <span>
                             <span className="block font-medium text-foreground">{p.name}</span>
@@ -147,8 +166,12 @@ function PatientsPage() {
                       <td className="px-5 py-3 text-muted-foreground">
                         {p.nextAppointment ? formatDate(p.nextAppointment) : "—"}
                       </td>
-                      <td className="px-5 py-3 text-muted-foreground">{profName(p.professionalId)}</td>
-                      <td className="px-5 py-3"><StatusBadge status={p.status} /></td>
+                      <td className="px-5 py-3 text-muted-foreground">
+                        {profName(p.professionalId)}
+                      </td>
+                      <td className="px-5 py-3">
+                        <StatusBadge status={p.status} />
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -159,7 +182,11 @@ function PatientsPage() {
             <ul className="divide-y divide-border md:hidden">
               {rows.map((p) => (
                 <li key={p.id} className="p-4">
-                  <Link to="/pacientes/$id" params={{ id: p.id }} className="flex items-start gap-3">
+                  <Link
+                    to="/pacientes/$id"
+                    params={{ id: p.id }}
+                    className="flex items-start gap-3"
+                  >
                     <PatientAvatar name={p.name} tone={p.avatarTone} size="sm" />
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center justify-between gap-2">
@@ -181,7 +208,12 @@ function PatientsPage() {
                 {filtered.length} paciente(s) · página {current} de {totalPages}
               </p>
               <div className="flex gap-2">
-                <Button variant="outline" size="sm" disabled={current === 1} onClick={() => setPage(current - 1)}>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  disabled={current === 1}
+                  onClick={() => setPage(current - 1)}
+                >
                   Anterior
                 </Button>
                 <Button

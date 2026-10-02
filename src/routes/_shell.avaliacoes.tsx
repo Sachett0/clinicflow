@@ -35,7 +35,10 @@ export const Route = createFileRoute("/_shell/avaliacoes")({
   head: () => ({
     meta: [
       { title: "Avaliações · ClinicFlow" },
-      { name: "description", content: "Modelos de avaliação personalizáveis com construtor de formulários." },
+      {
+        name: "description",
+        content: "Modelos de avaliação personalizáveis com construtor de formulários.",
+      },
       { property: "og:title", content: "Avaliações · ClinicFlow" },
       { property: "og:description", content: "Crie modelos de avaliação com campos sob medida." },
     ],
@@ -65,7 +68,10 @@ interface DraftField {
 }
 
 function EvaluationsPage() {
-  const templates = useQuery({ queryKey: ["evaluation-templates"], queryFn: evaluationService.templates });
+  const templates = useQuery({
+    queryKey: ["evaluation-templates"],
+    queryFn: evaluationService.templates,
+  });
   const [builderOpen, setBuilderOpen] = useState(false);
 
   return (
@@ -94,10 +100,18 @@ function EvaluationsPage() {
                 <span>Atualizado em {formatDate(t.updatedAt)}</span>
               </div>
               <div className="mt-4 flex gap-2">
-                <Button size="sm" variant="outline" onClick={() => toast.info(`Editando “${t.name}”.`)}>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => toast.info(`Editando “${t.name}”.`)}
+                >
                   Editar campos
                 </Button>
-                <Button size="sm" variant="ghost" onClick={() => toast.success("Modelo duplicado.")}>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => toast.success("Modelo duplicado.")}
+                >
                   Duplicar
                 </Button>
               </div>
@@ -150,7 +164,11 @@ function FormBuilderDialog({
         <div className="space-y-5">
           <div className="space-y-2">
             <Label>Nome do modelo</Label>
-            <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="Ex.: Avaliação de dor crônica" />
+            <Input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Ex.: Avaliação de dor crônica"
+            />
           </div>
 
           <div className="space-y-2">
@@ -160,7 +178,10 @@ function FormBuilderDialog({
             ) : (
               <ul className="space-y-2">
                 {fields.map((f, index) => (
-                  <li key={f.id} className="flex items-center gap-2 rounded-lg border border-border p-3">
+                  <li
+                    key={f.id}
+                    className="flex items-center gap-2 rounded-lg border border-border p-3"
+                  >
                     <GripVertical className="size-4 text-muted-foreground" />
                     <div className="flex-1">
                       <p className="text-sm font-medium">{f.label}</p>
@@ -168,8 +189,22 @@ function FormBuilderDialog({
                         {FIELD_TYPES.find((t) => t.value === f.type)?.label}
                       </p>
                     </div>
-                    <Button size="sm" variant="ghost" onClick={() => move(index, -1)} aria-label="Mover para cima">↑</Button>
-                    <Button size="sm" variant="ghost" onClick={() => move(index, 1)} aria-label="Mover para baixo">↓</Button>
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      onClick={() => move(index, -1)}
+                      aria-label="Mover para cima"
+                    >
+                      ↑
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      onClick={() => move(index, 1)}
+                      aria-label="Mover para baixo"
+                    >
+                      ↓
+                    </Button>
                     <Button
                       size="icon"
                       variant="ghost"
@@ -185,12 +220,20 @@ function FormBuilderDialog({
           </div>
 
           <div className="grid gap-3 rounded-xl bg-muted/50 p-4 sm:grid-cols-[1fr_200px_auto]">
-            <Input placeholder="Nome do campo" value={newLabel} onChange={(e) => setNewLabel(e.target.value)} />
+            <Input
+              placeholder="Nome do campo"
+              value={newLabel}
+              onChange={(e) => setNewLabel(e.target.value)}
+            />
             <Select value={newType} onValueChange={(v) => setNewType(v as FieldType)}>
-              <SelectTrigger><SelectValue /></SelectTrigger>
+              <SelectTrigger>
+                <SelectValue />
+              </SelectTrigger>
               <SelectContent>
                 {FIELD_TYPES.map((t) => (
-                  <SelectItem key={t.value} value={t.value}>{t.label}</SelectItem>
+                  <SelectItem key={t.value} value={t.value}>
+                    {t.label}
+                  </SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -211,14 +254,18 @@ function FormBuilderDialog({
         </div>
 
         <DialogFooter>
-          <Button variant="outline" onClick={() => onOpenChange(false)}>Cancelar</Button>
+          <Button variant="outline" onClick={() => onOpenChange(false)}>
+            Cancelar
+          </Button>
           <Button
             onClick={() => {
               if (!name.trim()) {
                 toast.error("Informe o nome do modelo.");
                 return;
               }
-              toast.success("Modelo de avaliação criado.", { description: `${fields.length} campos configurados.` });
+              toast.success("Modelo de avaliação criado.", {
+                description: `${fields.length} campos configurados.`,
+              });
               onOpenChange(false);
             }}
           >

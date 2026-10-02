@@ -15,7 +15,10 @@ export const Route = createFileRoute("/_shell/planos")({
   head: () => ({
     meta: [
       { title: "Planos terapêuticos · ClinicFlow" },
-      { name: "description", content: "Objetivos, metas e progresso do tratamento de cada paciente." },
+      {
+        name: "description",
+        content: "Objetivos, metas e progresso do tratamento de cada paciente.",
+      },
       { property: "og:title", content: "Planos terapêuticos · ClinicFlow" },
       { property: "og:description", content: "Acompanhe metas e progresso clínico por paciente." },
     ],
@@ -26,7 +29,10 @@ export const Route = createFileRoute("/_shell/planos")({
 function PlansPage() {
   const plans = useQuery({ queryKey: ["plans"], queryFn: therapyPlanService.list });
   const patients = useQuery({ queryKey: ["patients"], queryFn: patientService.list });
-  const professionals = useQuery({ queryKey: ["professionals"], queryFn: professionalService.list });
+  const professionals = useQuery({
+    queryKey: ["professionals"],
+    queryFn: professionalService.list,
+  });
 
   const patientName = (id: string) => patients.data?.find((p) => p.id === id)?.name ?? "—";
   const profName = (id: string) => professionals.data?.find((p) => p.id === id)?.name ?? "—";
@@ -36,7 +42,11 @@ function PlansPage() {
       <PageHeader
         title="Planos terapêuticos"
         description="Objetivos, frequência e metas mensuráveis por paciente."
-        actions={<Button onClick={() => toast.info("Selecione um paciente para criar o plano.")}>+ Novo plano</Button>}
+        actions={
+          <Button onClick={() => toast.info("Selecione um paciente para criar o plano.")}>
+            + Novo plano
+          </Button>
+        }
       />
 
       {plans.isLoading ? (
@@ -54,7 +64,9 @@ function PlansPage() {
                 description={`${profName(plan.professionalId)} · ${plan.frequency}`}
                 actions={
                   <Button size="sm" variant="outline" asChild>
-                    <Link to="/pacientes/$id" params={{ id: plan.patientId }}>Abrir paciente</Link>
+                    <Link to="/pacientes/$id" params={{ id: plan.patientId }}>
+                      Abrir paciente
+                    </Link>
                   </Button>
                 }
               >
@@ -65,7 +77,9 @@ function PlansPage() {
                   <Info label="Sessões" value={`${plan.usedSessions} de ${plan.totalSessions}`} />
                 </div>
                 <Progress value={sessionPct} className="mt-4" />
-                <p className="mt-1 text-xs text-muted-foreground">{sessionPct}% das sessões realizadas</p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  {sessionPct}% das sessões realizadas
+                </p>
 
                 <div className="mt-5 space-y-3">
                   {plan.goals.map((g) => (

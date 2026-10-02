@@ -39,14 +39,14 @@ O código foi organizado em **camadas**. Cada uma tem uma única responsabilidad
 
 ## 2. Como rodar
 
-| Comando | O que faz |
-|---|---|
-| `npm install` | Baixa todas as bibliotecas listadas no `package.json` para a pasta `node_modules/`. Rode uma vez e sempre que o `package.json` mudar. |
-| `npm run dev` | Liga o servidor de desenvolvimento em **http://localhost:8080**. Toda alteração no código aparece na hora no navegador. |
-| `npm run build` | Gera a versão de produção, otimizada, na pasta `.output/`. |
-| `npm run preview` | Roda localmente a versão gerada pelo `build`, para testar antes de publicar. |
-| `npm run lint` | Procura erros e problemas de estilo no código (ESLint). |
-| `npm run format` | Formata automaticamente todo o código (Prettier). |
+| Comando           | O que faz                                                                                                                             |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm install`     | Baixa todas as bibliotecas listadas no `package.json` para a pasta `node_modules/`. Rode uma vez e sempre que o `package.json` mudar. |
+| `npm run dev`     | Liga o servidor de desenvolvimento em **http://localhost:8080**. Toda alteração no código aparece na hora no navegador.               |
+| `npm run build`   | Gera a versão de produção, otimizada, na pasta `.output/`.                                                                            |
+| `npm run preview` | Roda localmente a versão gerada pelo `build`, para testar antes de publicar.                                                          |
+| `npm run lint`    | Procura erros e problemas de estilo no código (ESLint).                                                                               |
+| `npm run format`  | Formata automaticamente todo o código (Prettier).                                                                                     |
 
 ---
 
@@ -98,31 +98,31 @@ O **TanStack Router** cria as URLs a partir dos **nomes dos arquivos**:
 
 ### Arquivos estruturais
 
-| Arquivo | O que faz |
-|---|---|
-| `__root.tsx` | **Raiz de tudo.** Monta o `<html>`, carrega o CSS e as fontes, define título e descrição para o Google, liga o TanStack Query e as notificações (toasts). Também tem as telas de **404** e de **erro**. |
+| Arquivo      | O que faz                                                                                                                                                                                                |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `__root.tsx` | **Raiz de tudo.** Monta o `<html>`, carrega o CSS e as fontes, define título e descrição para o Google, liga o TanStack Query e as notificações (toasts). Também tem as telas de **404** e de **erro**.  |
 | `_shell.tsx` | **Layout do sistema logado:** menu lateral (que pode ser recolhido), barra do topo, área central e rodapé "dados fictícios". Todas as páginas `_shell.*` aparecem dentro dele, no lugar do `<Outlet />`. |
-| `index.tsx` | **Tela de login.** Por enquanto é simulada: aceita qualquer e-mail/senha válidos e vai para `/dashboard`. |
+| `index.tsx`  | **Tela de login.** Por enquanto é simulada: aceita qualquer e-mail/senha válidos e vai para `/dashboard`.                                                                                                |
 
 ### Páginas do sistema
 
-| Arquivo | URL | Tela | Serviços que usa |
-|---|---|---|---|
-| `_shell.dashboard.tsx` | `/dashboard` | Indicadores, gráficos, agenda do dia, notificações | vários |
-| `_shell.agenda.tsx` | `/agenda` | Calendário semanal com filtros por profissional/sala/serviço | `appointmentService`, `patientService`, `professionalService`, `roomService`, `serviceCatalog` |
-| `_shell.pacientes.index.tsx` | `/pacientes` | Lista de pacientes com busca e filtros | `patientService`, `professionalService` |
-| `_shell.pacientes.$id.tsx` | `/pacientes/:id` | Perfil do paciente com abas (resumo, prontuário, financeiro...) | vários |
-| `_shell.prontuarios.tsx` | `/prontuarios` | Linha do tempo clínica | `medicalRecordService` |
-| `_shell.avaliacoes.tsx` | `/avaliacoes` | Modelos de avaliação e construtor de formulários | `evaluationService` |
-| `_shell.evolucoes.tsx` | `/evolucoes` | Registro de evolução (rascunho → finalizado) | `medicalRecordService` |
-| `_shell.planos.tsx` | `/planos` | Planos terapêuticos com metas e progresso | `therapyPlanService` |
-| `_shell.documentos.tsx` | `/documentos` | Biblioteca de documentos | `documentService` |
-| `_shell.assinaturas.tsx` | `/assinaturas` | Fluxo de assinatura eletrônica (visual) | `documentService` |
-| `_shell.comunicacao.tsx` | `/comunicacao` | WhatsApp: templates e conversas (visual) | `whatsappService` |
-| `_shell.financeiro.tsx` | `/financeiro` | Cobranças e pacotes de sessões | `financialService` |
-| `_shell.relatorios.tsx` | `/relatorios` | Gráficos e relatórios | `reportService` |
-| `_shell.auditoria.tsx` | `/auditoria` | Logs de quem fez o quê | `auditService` |
-| `_shell.configuracoes.tsx` | `/configuracoes` | Clínica, usuários, salas, serviços, permissões | vários |
+| Arquivo                      | URL              | Tela                                                            | Serviços que usa                                                                               |
+| ---------------------------- | ---------------- | --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `_shell.dashboard.tsx`       | `/dashboard`     | Indicadores, gráficos, agenda do dia, notificações              | vários                                                                                         |
+| `_shell.agenda.tsx`          | `/agenda`        | Calendário semanal com filtros por profissional/sala/serviço    | `appointmentService`, `patientService`, `professionalService`, `roomService`, `serviceCatalog` |
+| `_shell.pacientes.index.tsx` | `/pacientes`     | Lista de pacientes com busca e filtros                          | `patientService`, `professionalService`                                                        |
+| `_shell.pacientes.$id.tsx`   | `/pacientes/:id` | Perfil do paciente com abas (resumo, prontuário, financeiro...) | vários                                                                                         |
+| `_shell.prontuarios.tsx`     | `/prontuarios`   | Linha do tempo clínica                                          | `medicalRecordService`                                                                         |
+| `_shell.avaliacoes.tsx`      | `/avaliacoes`    | Modelos de avaliação e construtor de formulários                | `evaluationService`                                                                            |
+| `_shell.evolucoes.tsx`       | `/evolucoes`     | Registro de evolução (rascunho → finalizado)                    | `medicalRecordService`                                                                         |
+| `_shell.planos.tsx`          | `/planos`        | Planos terapêuticos com metas e progresso                       | `therapyPlanService`                                                                           |
+| `_shell.documentos.tsx`      | `/documentos`    | Biblioteca de documentos                                        | `documentService`                                                                              |
+| `_shell.assinaturas.tsx`     | `/assinaturas`   | Fluxo de assinatura eletrônica (visual)                         | `documentService`                                                                              |
+| `_shell.comunicacao.tsx`     | `/comunicacao`   | WhatsApp: templates e conversas (visual)                        | `whatsappService`                                                                              |
+| `_shell.financeiro.tsx`      | `/financeiro`    | Cobranças e pacotes de sessões                                  | `financialService`                                                                             |
+| `_shell.relatorios.tsx`      | `/relatorios`    | Gráficos e relatórios                                           | `reportService`                                                                                |
+| `_shell.auditoria.tsx`       | `/auditoria`     | Logs de quem fez o quê                                          | `auditService`                                                                                 |
+| `_shell.configuracoes.tsx`   | `/configuracoes` | Clínica, usuários, salas, serviços, permissões                  | vários                                                                                         |
 
 `routes/README.md` resume as convenções de nomes de rota.
 
@@ -143,34 +143,34 @@ São 46 componentes **copiados para dentro do projeto** pelo shadcn/ui: `button`
 
 ### `src/components/common/`: peças próprias do ClinicFlow
 
-| Arquivo | O que é |
-|---|---|
-| `PageHeader.tsx` | Título + subtítulo + botões no topo de cada página |
-| `StatCard.tsx` | Card de indicador (ex.: "Pacientes ativos: 186") |
-| `SectionCard.tsx` | Caixa branca com título, usada para agrupar conteúdo |
-| `StatusBadge.tsx` | Etiqueta colorida de status (agendado, pago, assinado...) |
-| `PatientAvatar.tsx` | Círculo com as iniciais do paciente |
-| `Timeline.tsx` | Linha do tempo vertical (prontuário, assinaturas) |
-| `EmptyState.tsx` | Mensagem para "nada encontrado", com botão de ação |
-| `LoadingState.tsx` | Esqueleto de carregamento enquanto os dados chegam |
-| `ConfirmDialog.tsx` | Caixa "Tem certeza?" para ações destrutivas |
+| Arquivo             | O que é                                                   |
+| ------------------- | --------------------------------------------------------- |
+| `PageHeader.tsx`    | Título + subtítulo + botões no topo de cada página        |
+| `StatCard.tsx`      | Card de indicador (ex.: "Pacientes ativos: 186")          |
+| `SectionCard.tsx`   | Caixa branca com título, usada para agrupar conteúdo      |
+| `StatusBadge.tsx`   | Etiqueta colorida de status (agendado, pago, assinado...) |
+| `PatientAvatar.tsx` | Círculo com as iniciais do paciente                       |
+| `Timeline.tsx`      | Linha do tempo vertical (prontuário, assinaturas)         |
+| `EmptyState.tsx`    | Mensagem para "nada encontrado", com botão de ação        |
+| `LoadingState.tsx`  | Esqueleto de carregamento enquanto os dados chegam        |
+| `ConfirmDialog.tsx` | Caixa "Tem certeza?" para ações destrutivas               |
 
 ### `src/components/layout/`: a moldura do sistema
 
-| Arquivo | O que é |
-|---|---|
+| Arquivo         | O que é                                                                         |
+| --------------- | ------------------------------------------------------------------------------- |
 | `nav-config.ts` | **Lista dos itens do menu lateral.** Para adicionar uma página ao menu, é aqui. |
-| `Sidebar.tsx` | Menu lateral (desenha os itens do `nav-config`) |
-| `Topbar.tsx` | Barra do topo: busca, notificações, ajuda, menu do usuário e menu mobile |
-| `Logo.tsx` | Logo do ClinicFlow |
+| `Sidebar.tsx`   | Menu lateral (desenha os itens do `nav-config`)                                 |
+| `Topbar.tsx`    | Barra do topo: busca, notificações, ajuda, menu do usuário e menu mobile        |
+| `Logo.tsx`      | Logo do ClinicFlow                                                              |
 
 ### `src/modules/`: peças específicas de uma área
 
-| Arquivo | O que é |
-|---|---|
-| `patients/NewPatientDialog.tsx` | Formulário "Novo paciente" com abas (pessoais, endereço, clínico) |
-| `appointments/NewAppointmentDialog.tsx` | Formulário "Novo agendamento" com aviso de conflito de horário |
-| `appointments/AppointmentDrawer.tsx` | Painel lateral com detalhes de um agendamento |
+| Arquivo                                 | O que é                                                           |
+| --------------------------------------- | ----------------------------------------------------------------- |
+| `patients/NewPatientDialog.tsx`         | Formulário "Novo paciente" com abas (pessoais, endereço, clínico) |
+| `appointments/NewAppointmentDialog.tsx` | Formulário "Novo agendamento" com aviso de conflito de horário    |
+| `appointments/AppointmentDrawer.tsx`    | Painel lateral com detalhes de um agendamento                     |
 
 ---
 
@@ -181,21 +181,21 @@ São 46 componentes **copiados para dentro do projeto** pelo shadcn/ui: `button`
 Define a **forma** de cada informação do sistema. Cada `interface` aqui deve virar uma
 **tabela** no banco de dados:
 
-| Tipo | Representa | Destaques |
-|---|---|---|
-| `Clinic` | Clínica (o "cliente" do SaaS) | |
-| `User` | Usuário que faz login | `role`: admin, reception, professional, financial |
-| `Professional` | Fisioterapeuta/profissional | conselho (CREFITO), cor na agenda |
-| `Room` / `Service` | Salas e serviços oferecidos | duração e preço do serviço |
-| `Patient` | Paciente | dados pessoais, endereço, dados clínicos |
-| `Appointment` | Agendamento | 7 status: agendado → confirmado → check-in → atendimento → finalizado / cancelado / faltou |
-| `MedicalRecordEntry` | Registro do prontuário | rascunho / finalizado / correção |
-| `EvaluationTemplate` | Modelo de avaliação | 12 tipos de campo |
-| `TherapyPlan` + `TherapyGoal` | Plano terapêutico e metas | |
-| `ClinicDocument` + `Signer` | Documento e signatários | |
-| `WhatsappTemplate` / `WhatsappConversation` | Mensagens | |
-| `Charge` / `SessionPackage` | Cobranças e pacotes | |
-| `NotificationItem` / `AuditLog` | Notificações e auditoria | |
+| Tipo                                        | Representa                    | Destaques                                                                                  |
+| ------------------------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------ |
+| `Clinic`                                    | Clínica (o "cliente" do SaaS) |                                                                                            |
+| `User`                                      | Usuário que faz login         | `role`: admin, reception, professional, financial                                          |
+| `Professional`                              | Fisioterapeuta/profissional   | conselho (CREFITO), cor na agenda                                                          |
+| `Room` / `Service`                          | Salas e serviços oferecidos   | duração e preço do serviço                                                                 |
+| `Patient`                                   | Paciente                      | dados pessoais, endereço, dados clínicos                                                   |
+| `Appointment`                               | Agendamento                   | 7 status: agendado → confirmado → check-in → atendimento → finalizado / cancelado / faltou |
+| `MedicalRecordEntry`                        | Registro do prontuário        | rascunho / finalizado / correção                                                           |
+| `EvaluationTemplate`                        | Modelo de avaliação           | 12 tipos de campo                                                                          |
+| `TherapyPlan` + `TherapyGoal`               | Plano terapêutico e metas     |                                                                                            |
+| `ClinicDocument` + `Signer`                 | Documento e signatários       |                                                                                            |
+| `WhatsappTemplate` / `WhatsappConversation` | Mensagens                     |                                                                                            |
+| `Charge` / `SessionPackage`                 | Cobranças e pacotes           |                                                                                            |
+| `NotificationItem` / `AuditLog`             | Notificações e auditoria      |                                                                                            |
 
 **Todos** têm `tenantId`, o identificador da clínica dona do dado. É isso que garante que a
 Clínica A nunca veja os dados da Clínica B (**multi-tenant**).
@@ -211,6 +211,7 @@ Agrupa funções por assunto: `patientService.list()`, `appointmentService.creat
 `financialService.charges()`...
 
 Hoje cada função:
+
 1. pega os dados do `mock.ts`;
 2. filtra pela clínica atual (`scoped(...)`);
 3. espera ~0,3 s para simular a internet (`resolve(...)`).
@@ -224,8 +225,8 @@ resposta continuam iguais**, por isso as telas não precisam mudar.
 // em _shell.pacientes.index.tsx
 const patients = useQuery({ queryKey: ["patients"], queryFn: patientService.list });
 
-patients.isLoading  // true enquanto carrega → mostra <LoadingState />
-patients.data       // a lista de pacientes quando chega
+patients.isLoading; // true enquanto carrega → mostra <LoadingState />
+patients.data; // a lista de pacientes quando chega
 ```
 
 O `useQuery` (TanStack Query) cuida de: chamar o serviço, mostrar o carregamento, guardar em
@@ -235,13 +236,13 @@ cache (se outra tela pedir `["patients"]`, não busca de novo) e tentar de novo 
 
 ## 7. Utilitários (`src/lib/` e `src/hooks/`)
 
-| Arquivo | O que faz |
-|---|---|
-| `lib/utils.ts` | `cn()`: junta classes CSS do Tailwind sem conflito. Usado em todos os componentes. |
-| `lib/format.ts` | Formatação brasileira: `currency()` (R$), `formatDate()` (dd/mm/aaaa), `age()`, `maskCpf()` (***.***.123-45), `initials()`. Também define `TODAY`, a "data de hoje" fixa do protótipo. |
-| `lib/error-capture.ts` | Captura erros do servidor e registra a mensagem completa no terminal (com a origem do erro). |
-| `lib/error-page.ts` | Página HTML simples de "erro" mostrada quando o servidor falha gravemente. |
-| `hooks/use-mobile.tsx` | `useIsMobile()`: diz se a tela é de celular (< 768px). |
+| Arquivo                | O que faz                                                                                                                                                                              |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `lib/utils.ts`         | `cn()`: junta classes CSS do Tailwind sem conflito. Usado em todos os componentes.                                                                                                     |
+| `lib/format.ts`        | Formatação brasileira: `currency()` (R$), `formatDate()` (dd/mm/aaaa), `age()`, `maskCpf()` (_**.**_.123-45), `initials()`. Também define `TODAY`, a "data de hoje" fixa do protótipo. |
+| `lib/error-capture.ts` | Captura erros do servidor e registra a mensagem completa no terminal (com a origem do erro).                                                                                           |
+| `lib/error-page.ts`    | Página HTML simples de "erro" mostrada quando o servidor falha gravemente.                                                                                                             |
+| `hooks/use-mobile.tsx` | `useIsMobile()`: diz se a tela é de celular (< 768px).                                                                                                                                 |
 
 ### Arquivos do servidor (`src/server.ts` e `src/start.ts`)
 
@@ -260,44 +261,44 @@ o que deixa o carregamento inicial mais rápido.
 
 ### O motor
 
-| Ferramenta | Para que serve |
-|---|---|
-| **Node.js / npm** | Node roda JavaScript fora do navegador. O npm instala as bibliotecas. |
-| **Vite** | Servidor de desenvolvimento ultrarrápido e empacotador para produção |
-| **TypeScript** | JavaScript com **tipos**: avisa erros (ex.: passar texto onde se espera número) antes de rodar |
-| **React** | Biblioteca para montar a interface em componentes |
-| **TanStack Start** | Framework "full-stack" sobre o React: SSR, funções de servidor e build. É onde o back-end pode morar. |
-| **TanStack Router** | Navegação entre páginas com rotas tipadas, baseadas em arquivos |
-| **TanStack Query** | Busca, cache e atualização de dados vindos do servidor |
-| **Nitro** | Empacota o servidor para rodar em produção (só usado no `npm run build`) |
+| Ferramenta          | Para que serve                                                                                        |
+| ------------------- | ----------------------------------------------------------------------------------------------------- |
+| **Node.js / npm**   | Node roda JavaScript fora do navegador. O npm instala as bibliotecas.                                 |
+| **Vite**            | Servidor de desenvolvimento ultrarrápido e empacotador para produção                                  |
+| **TypeScript**      | JavaScript com **tipos**: avisa erros (ex.: passar texto onde se espera número) antes de rodar        |
+| **React**           | Biblioteca para montar a interface em componentes                                                     |
+| **TanStack Start**  | Framework "full-stack" sobre o React: SSR, funções de servidor e build. É onde o back-end pode morar. |
+| **TanStack Router** | Navegação entre páginas com rotas tipadas, baseadas em arquivos                                       |
+| **TanStack Query**  | Busca, cache e atualização de dados vindos do servidor                                                |
+| **Nitro**           | Empacota o servidor para rodar em produção (só usado no `npm run build`)                              |
 
 ### Visual
 
-| Ferramenta | Para que serve |
-|---|---|
-| **Tailwind CSS** | Estilização com classes (`p-4` = espaçamento, `bg-primary` = cor primária) |
-| **shadcn/ui** + **Radix UI** | Componentes de interface acessíveis (ver seção 5) |
-| **lucide-react** | Ícones |
-| **recharts** | Gráficos (dashboard, relatórios, financeiro) |
-| **sonner** | Notificações no canto da tela ("Paciente cadastrado com sucesso") |
-| **tw-animate-css** | Animações de entrada e saída |
-| **class-variance-authority**, **clsx**, **tailwind-merge** | Ajudam a combinar classes CSS e variações de componentes (ex.: botão `primary` ou `outline`) |
+| Ferramenta                                                                                              | Para que serve                                                                                                                                     |
+| ------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Tailwind CSS**                                                                                        | Estilização com classes (`p-4` = espaçamento, `bg-primary` = cor primária)                                                                         |
+| **shadcn/ui** + **Radix UI**                                                                            | Componentes de interface acessíveis (ver seção 5)                                                                                                  |
+| **lucide-react**                                                                                        | Ícones                                                                                                                                             |
+| **recharts**                                                                                            | Gráficos (dashboard, relatórios, financeiro)                                                                                                       |
+| **sonner**                                                                                              | Notificações no canto da tela ("Paciente cadastrado com sucesso")                                                                                  |
+| **tw-animate-css**                                                                                      | Animações de entrada e saída                                                                                                                       |
+| **class-variance-authority**, **clsx**, **tailwind-merge**                                              | Ajudam a combinar classes CSS e variações de componentes (ex.: botão `primary` ou `outline`)                                                       |
 | **cmdk**, **vaul**, **embla-carousel**, **react-day-picker**, **input-otp**, **react-resizable-panels** | Usados por componentes específicos do shadcn: busca rápida, gaveta mobile, carrossel, calendário, código de verificação e painéis redimensionáveis |
 
 ### Formulários e dados
 
-| Ferramenta | Para que serve |
-|---|---|
-| **React Hook Form** | Controla formulários (valores, envio, erros) |
-| **Zod** | Define **regras de validação** ("e-mail precisa ser válido", "CPF precisa ter 11 dígitos"). Pode ser reaproveitado no back-end. |
-| **date-fns** | Cálculos com datas |
+| Ferramenta          | Para que serve                                                                                                                  |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| **React Hook Form** | Controla formulários (valores, envio, erros)                                                                                    |
+| **Zod**             | Define **regras de validação** ("e-mail precisa ser válido", "CPF precisa ter 11 dígitos"). Pode ser reaproveitado no back-end. |
+| **date-fns**        | Cálculos com datas                                                                                                              |
 
 ### Qualidade de código
 
-| Ferramenta | Para que serve |
-|---|---|
-| **ESLint** (`eslint.config.js`) | Aponta erros e más práticas |
-| **Prettier** (`.prettierrc`) | Formata o código sempre do mesmo jeito (linhas de até 100 caracteres, aspas duplas, vírgula no final) |
+| Ferramenta                      | Para que serve                                                                                        |
+| ------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| **ESLint** (`eslint.config.js`) | Aponta erros e más práticas                                                                           |
+| **Prettier** (`.prettierrc`)    | Formata o código sempre do mesmo jeito (linhas de até 100 caracteres, aspas duplas, vírgula no final) |
 
 ---
 
@@ -322,16 +323,16 @@ Itens encontrados na leitura do código que precisam de trabalho para virar um p
 
 ## 10. Glossário rápido
 
-| Termo | Significado |
-|---|---|
-| **Front-end** | O que roda no navegador: telas, botões, formulários |
-| **Back-end** | O que roda no servidor: banco de dados, regras, login, integrações |
-| **SaaS** | Software vendido como assinatura, usado pela internet por vários clientes |
-| **Multi-tenant** | Um único sistema servindo várias clínicas, com dados separados |
-| **Mock** | Dado falso usado para desenvolver antes de existir o real |
-| **Rota** | Uma URL do sistema e a página que ela mostra |
-| **Componente** | Peça reutilizável da interface (um botão, um card, um formulário) |
-| **SSR** | Renderização no servidor: a página chega pronta ao navegador |
-| **Build** | Processo que transforma o código em arquivos otimizados para produção |
-| **Commit** | Um "ponto salvo" no histórico do Git |
-| **Branch** | Uma linha paralela de trabalho no Git, para mexer sem afetar a principal (`main`) |
+| Termo            | Significado                                                                       |
+| ---------------- | --------------------------------------------------------------------------------- |
+| **Front-end**    | O que roda no navegador: telas, botões, formulários                               |
+| **Back-end**     | O que roda no servidor: banco de dados, regras, login, integrações                |
+| **SaaS**         | Software vendido como assinatura, usado pela internet por vários clientes         |
+| **Multi-tenant** | Um único sistema servindo várias clínicas, com dados separados                    |
+| **Mock**         | Dado falso usado para desenvolver antes de existir o real                         |
+| **Rota**         | Uma URL do sistema e a página que ela mostra                                      |
+| **Componente**   | Peça reutilizável da interface (um botão, um card, um formulário)                 |
+| **SSR**          | Renderização no servidor: a página chega pronta ao navegador                      |
+| **Build**        | Processo que transforma o código em arquivos otimizados para produção             |
+| **Commit**       | Um "ponto salvo" no histórico do Git                                              |
+| **Branch**       | Uma linha paralela de trabalho no Git, para mexer sem afetar a principal (`main`) |

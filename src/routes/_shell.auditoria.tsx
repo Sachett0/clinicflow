@@ -13,9 +13,16 @@ export const Route = createFileRoute("/_shell/auditoria")({
   head: () => ({
     meta: [
       { title: "Logs de auditoria · ClinicFlow" },
-      { name: "description", content: "Registro de ações dos usuários sobre pacientes, prontuários, documentos e financeiro." },
+      {
+        name: "description",
+        content:
+          "Registro de ações dos usuários sobre pacientes, prontuários, documentos e financeiro.",
+      },
       { property: "og:title", content: "Logs de auditoria · ClinicFlow" },
-      { property: "og:description", content: "Rastreabilidade completa para conformidade com a LGPD." },
+      {
+        property: "og:description",
+        content: "Rastreabilidade completa para conformidade com a LGPD.",
+      },
     ],
   }),
   component: AuditPage,
@@ -30,20 +37,33 @@ function AuditPage() {
 
   return (
     <>
-      <PageHeader title="Logs de auditoria" description="Toda ação sensível fica registrada com usuário, recurso e IP." />
+      <PageHeader
+        title="Logs de auditoria"
+        description="Toda ação sensível fica registrada com usuário, recurso e IP."
+      />
       <SectionCard bodyClassName="p-4">
-        <Input placeholder="Filtrar por usuário, ação ou recurso" value={term} onChange={(e) => setTerm(e.target.value)} />
+        <Input
+          placeholder="Filtrar por usuário, ação ou recurso"
+          value={term}
+          onChange={(e) => setTerm(e.target.value)}
+        />
       </SectionCard>
       <SectionCard bodyClassName="p-0">
-        {logs.isLoading ? <TableSkeleton /> : rows.length === 0 ? (
-          <div className="p-5"><EmptyState title="Nenhum registro encontrado." /></div>
+        {logs.isLoading ? (
+          <TableSkeleton />
+        ) : rows.length === 0 ? (
+          <div className="p-5">
+            <EmptyState title="Nenhum registro encontrado." />
+          </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full min-w-[720px] text-sm">
               <thead className="border-b border-border bg-muted/40 text-left text-xs text-muted-foreground uppercase">
                 <tr>
                   {["Data", "Usuário", "Ação", "Recurso", "IP", "Resultado"].map((h) => (
-                    <th key={h} className="px-5 py-3 font-medium">{h}</th>
+                    <th key={h} className="px-5 py-3 font-medium">
+                      {h}
+                    </th>
                   ))}
                 </tr>
               </thead>
@@ -53,9 +73,13 @@ function AuditPage() {
                     <td className="px-5 py-3 text-muted-foreground">{l.at}</td>
                     <td className="px-5 py-3 font-medium">{l.user}</td>
                     <td className="px-5 py-3">{l.action}</td>
-                    <td className="px-5 py-3 font-mono text-xs text-muted-foreground">{l.resource}</td>
+                    <td className="px-5 py-3 font-mono text-xs text-muted-foreground">
+                      {l.resource}
+                    </td>
                     <td className="px-5 py-3 font-mono text-xs text-muted-foreground">{l.ip}</td>
-                    <td className="px-5 py-3"><StatusBadge status={l.result} /></td>
+                    <td className="px-5 py-3">
+                      <StatusBadge status={l.result} />
+                    </td>
                   </tr>
                 ))}
               </tbody>

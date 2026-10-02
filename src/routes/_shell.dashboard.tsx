@@ -35,10 +35,14 @@ export const Route = createFileRoute("/_shell/dashboard")({
       { title: "Dashboard · ClinicFlow" },
       {
         name: "description",
-        content: "Indicadores de atendimentos, pacientes ativos, confirmações e faturamento da clínica.",
+        content:
+          "Indicadores de atendimentos, pacientes ativos, confirmações e faturamento da clínica.",
       },
       { property: "og:title", content: "Dashboard · ClinicFlow" },
-      { property: "og:description", content: "Acompanhe os principais indicadores da sua clínica." },
+      {
+        property: "og:description",
+        content: "Acompanhe os principais indicadores da sua clínica.",
+      },
     ],
   }),
   component: DashboardPage,
@@ -47,13 +51,24 @@ export const Route = createFileRoute("/_shell/dashboard")({
 function DashboardPage() {
   const appointments = useQuery({ queryKey: ["appointments"], queryFn: appointmentService.list });
   const patients = useQuery({ queryKey: ["patients"], queryFn: patientService.list });
-  const professionals = useQuery({ queryKey: ["professionals"], queryFn: professionalService.list });
-  const series = useQuery({ queryKey: ["appointment-series"], queryFn: reportService.appointmentSeries });
+  const professionals = useQuery({
+    queryKey: ["professionals"],
+    queryFn: professionalService.list,
+  });
+  const series = useQuery({
+    queryKey: ["appointment-series"],
+    queryFn: reportService.appointmentSeries,
+  });
   const revenue = useQuery({ queryKey: ["revenue-series"], queryFn: reportService.revenueSeries });
-  const notifications = useQuery({ queryKey: ["notifications"], queryFn: notificationService.list });
+  const notifications = useQuery({
+    queryKey: ["notifications"],
+    queryFn: notificationService.list,
+  });
 
   const today = (appointments.data ?? []).filter((a) => a.date === TODAY);
-  const pendingConfirmations = (appointments.data ?? []).filter((a) => a.status === "agendado").length;
+  const pendingConfirmations = (appointments.data ?? []).filter(
+    (a) => a.status === "agendado",
+  ).length;
   const activePatients = (patients.data ?? []).filter((p) => p.status === "ativo").length;
   const patientName = (id: string) => patients.data?.find((p) => p.id === id)?.name ?? "—";
   const professionalName = (id: string) =>
@@ -123,9 +138,24 @@ function DashboardPage() {
           ) : (
             <ResponsiveContainer width="100%" height={260}>
               <BarChart data={series.data ?? []}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--color-border)" />
-                <XAxis dataKey="day" stroke="var(--color-muted-foreground)" fontSize={12} tickLine={false} axisLine={false} />
-                <YAxis stroke="var(--color-muted-foreground)" fontSize={12} tickLine={false} axisLine={false} />
+                <CartesianGrid
+                  strokeDasharray="3 3"
+                  vertical={false}
+                  stroke="var(--color-border)"
+                />
+                <XAxis
+                  dataKey="day"
+                  stroke="var(--color-muted-foreground)"
+                  fontSize={12}
+                  tickLine={false}
+                  axisLine={false}
+                />
+                <YAxis
+                  stroke="var(--color-muted-foreground)"
+                  fontSize={12}
+                  tickLine={false}
+                  axisLine={false}
+                />
                 <Tooltip
                   contentStyle={{
                     borderRadius: 12,
@@ -153,8 +183,18 @@ function DashboardPage() {
                     <stop offset="100%" stopColor="var(--color-chart-1)" stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--color-border)" />
-                <XAxis dataKey="month" stroke="var(--color-muted-foreground)" fontSize={12} tickLine={false} axisLine={false} />
+                <CartesianGrid
+                  strokeDasharray="3 3"
+                  vertical={false}
+                  stroke="var(--color-border)"
+                />
+                <XAxis
+                  dataKey="month"
+                  stroke="var(--color-muted-foreground)"
+                  fontSize={12}
+                  tickLine={false}
+                  axisLine={false}
+                />
                 <Tooltip
                   formatter={(v: number) => currency(v)}
                   contentStyle={{
@@ -164,8 +204,20 @@ function DashboardPage() {
                     fontSize: 12,
                   }}
                 />
-                <Area type="monotone" dataKey="receita" stroke="var(--color-chart-1)" fill="url(#rev)" strokeWidth={2} />
-                <Area type="monotone" dataKey="recebido" stroke="var(--color-chart-2)" fill="transparent" strokeWidth={2} />
+                <Area
+                  type="monotone"
+                  dataKey="receita"
+                  stroke="var(--color-chart-1)"
+                  fill="url(#rev)"
+                  strokeWidth={2}
+                />
+                <Area
+                  type="monotone"
+                  dataKey="recebido"
+                  stroke="var(--color-chart-2)"
+                  fill="transparent"
+                  strokeWidth={2}
+                />
               </AreaChart>
             </ResponsiveContainer>
           )}

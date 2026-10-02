@@ -904,8 +904,19 @@ export const documents: ClinicDocument[] = [
     createdAt: "2026-09-15",
     status: "aguardando",
     signers: [
-      { name: "Roberto Mendes", email: "roberto.mendes@email.com", role: "Paciente", status: "visualizado" },
-      { name: "Clínica Vitalis", email: "contato@clinicavitalis.com.br", role: "Contratada", status: "assinado", signedAt: "2026-09-15 09:30" },
+      {
+        name: "Roberto Mendes",
+        email: "roberto.mendes@email.com",
+        role: "Paciente",
+        status: "visualizado",
+      },
+      {
+        name: "Clínica Vitalis",
+        email: "contato@clinicavitalis.com.br",
+        role: "Contratada",
+        status: "assinado",
+        signedAt: "2026-09-15 09:30",
+      },
     ],
     timeline: [
       { label: "Documento criado", at: "15/09/2026 09:12", done: true },
@@ -923,7 +934,12 @@ export const documents: ClinicDocument[] = [
     createdAt: "2026-09-19",
     status: "enviado",
     signers: [
-      { name: "Dra. Helena Prado", email: "helena@clinicavitalis.com.br", role: "Profissional", status: "pendente" },
+      {
+        name: "Dra. Helena Prado",
+        email: "helena@clinicavitalis.com.br",
+        role: "Profissional",
+        status: "pendente",
+      },
     ],
     timeline: [
       { label: "Documento criado", at: "19/09/2026 16:10", done: true },
@@ -957,7 +973,12 @@ export const documents: ClinicDocument[] = [
     createdAt: "2026-08-30",
     status: "expirado",
     signers: [
-      { name: "Fernanda Lopes", email: "fernanda.lopes@email.com", role: "Paciente", status: "pendente" },
+      {
+        name: "Fernanda Lopes",
+        email: "fernanda.lopes@email.com",
+        role: "Paciente",
+        status: "pendente",
+      },
     ],
     timeline: [
       { label: "Documento criado", at: "30/08/2026 14:00", done: true },
@@ -975,7 +996,12 @@ export const documents: ClinicDocument[] = [
     createdAt: "2026-08-28",
     status: "recusado",
     signers: [
-      { name: "Camila Alves", email: "familia.alves@email.com", role: "Responsável", status: "recusado" },
+      {
+        name: "Camila Alves",
+        email: "familia.alves@email.com",
+        role: "Responsável",
+        status: "recusado",
+      },
     ],
     timeline: [
       { label: "Documento criado", at: "28/08/2026 09:00", done: true },
@@ -1061,7 +1087,13 @@ export const conversations: WhatsappConversation[] = [
         at: "18:30",
         status: "entregue",
       },
-      { id: "m2", from: "paciente", text: "Consigo chegar 10 minutos mais tarde.", at: "18:38", status: "lido" },
+      {
+        id: "m2",
+        from: "paciente",
+        text: "Consigo chegar 10 minutos mais tarde.",
+        at: "18:38",
+        status: "lido",
+      },
       { id: "m3", from: "paciente", text: "Tudo bem assim?", at: "18:40", status: "lido" },
     ],
   },
@@ -1079,7 +1111,13 @@ export const conversations: WhatsappConversation[] = [
         at: "15:10",
         status: "entregue",
       },
-      { id: "m2", from: "paciente", text: "Recebi, vou assinar hoje.", at: "15:22", status: "lido" },
+      {
+        id: "m2",
+        from: "paciente",
+        text: "Recebi, vou assinar hoje.",
+        at: "15:22",
+        status: "lido",
+      },
     ],
   },
   {

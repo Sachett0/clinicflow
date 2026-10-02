@@ -23,7 +23,8 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "ClinicFlow — Gestão completa para clínicas de saúde" },
       {
         property: "og:description",
-        content: "Agenda, prontuário, documentos, comunicação e financeiro para clínicas de fisioterapia.",
+        content:
+          "Agenda, prontuário, documentos, comunicação e financeiro para clínicas de fisioterapia.",
       },
     ],
   }),
@@ -43,7 +44,11 @@ function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
-    defaultValues: { email: "lucas.andrade@clinicavitalis.com.br", password: "demo1234", keepConnected: true },
+    defaultValues: {
+      email: "lucas.andrade@clinicavitalis.com.br",
+      password: "demo1234",
+      keepConnected: true,
+    },
   });
 
   const onSubmit = async (values: FormValues) => {
@@ -118,7 +123,9 @@ function LoginPage() {
             </div>
 
             <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
-              {form.formState.isSubmitting ? <Loader2 className="mr-2 size-4 animate-spin" /> : null}
+              {form.formState.isSubmitting ? (
+                <Loader2 className="mr-2 size-4 animate-spin" />
+              ) : null}
               Entrar
             </Button>
 

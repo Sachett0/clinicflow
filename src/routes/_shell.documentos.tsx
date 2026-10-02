@@ -24,9 +24,16 @@ export const Route = createFileRoute("/_shell/documentos")({
   head: () => ({
     meta: [
       { title: "Documentos · ClinicFlow" },
-      { name: "description", content: "Biblioteca de termos, contratos, laudos e declarações com controle de assinatura." },
+      {
+        name: "description",
+        content:
+          "Biblioteca de termos, contratos, laudos e declarações com controle de assinatura.",
+      },
       { property: "og:title", content: "Documentos · ClinicFlow" },
-      { property: "og:description", content: "Organize documentos da clínica e acompanhe assinaturas." },
+      {
+        property: "og:description",
+        content: "Organize documentos da clínica e acompanhe assinaturas.",
+      },
     ],
   }),
   component: DocumentsPage,
@@ -61,17 +68,29 @@ function DocumentsPage() {
       <PageHeader
         title="Documentos"
         description="Biblioteca de documentos da clínica com status de assinatura."
-        actions={<Button onClick={() => toast.success("Novo documento criado como rascunho.")}>+ Novo documento</Button>}
+        actions={
+          <Button onClick={() => toast.success("Novo documento criado como rascunho.")}>
+            + Novo documento
+          </Button>
+        }
       />
 
       <SectionCard bodyClassName="p-4">
         <div className="flex flex-col gap-3 sm:flex-row">
-          <Input placeholder="Buscar documento" value={term} onChange={(e) => setTerm(e.target.value)} />
+          <Input
+            placeholder="Buscar documento"
+            value={term}
+            onChange={(e) => setTerm(e.target.value)}
+          />
           <Select value={category} onValueChange={setCategory}>
-            <SelectTrigger className="sm:w-56"><SelectValue /></SelectTrigger>
+            <SelectTrigger className="sm:w-56">
+              <SelectValue />
+            </SelectTrigger>
             <SelectContent>
               {CATEGORIES.map((c) => (
-                <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>
+                <SelectItem key={c.value} value={c.value}>
+                  {c.label}
+                </SelectItem>
               ))}
             </SelectContent>
           </Select>
@@ -83,7 +102,11 @@ function DocumentsPage() {
           <TableSkeleton />
         ) : rows.length === 0 ? (
           <div className="p-5">
-            <EmptyState icon={FileText} title="Nenhum documento encontrado." description="Ajuste os filtros ou crie um documento." />
+            <EmptyState
+              icon={FileText}
+              title="Nenhum documento encontrado."
+              description="Ajuste os filtros ou crie um documento."
+            />
           </div>
         ) : (
           <>
@@ -106,22 +129,39 @@ function DocumentsPage() {
                         <p className="font-medium">{d.name}</p>
                         <p className="text-xs text-muted-foreground capitalize">{d.category}</p>
                       </td>
-                      <td className="px-5 py-3 text-muted-foreground">{patientName(d.patientId)}</td>
+                      <td className="px-5 py-3 text-muted-foreground">
+                        {patientName(d.patientId)}
+                      </td>
                       <td className="px-5 py-3 text-muted-foreground">{formatDate(d.createdAt)}</td>
-                      <td className="px-5 py-3"><StatusBadge status={d.status} /></td>
+                      <td className="px-5 py-3">
+                        <StatusBadge status={d.status} />
+                      </td>
                       <td className="px-5 py-3 text-xs text-muted-foreground">
-                        {d.signers.filter((s) => s.status === "assinado").length}/{d.signers.length || 0} assinaram
+                        {d.signers.filter((s) => s.status === "assinado").length}/
+                        {d.signers.length || 0} assinaram
                       </td>
                       <td className="px-5 py-3">
                         <div className="flex justify-end gap-1">
-                          <Button size="icon" variant="ghost" aria-label="Visualizar" onClick={() => toast.info("Pré-visualização do documento.")}>
+                          <Button
+                            size="icon"
+                            variant="ghost"
+                            aria-label="Visualizar"
+                            onClick={() => toast.info("Pré-visualização do documento.")}
+                          >
                             <Eye className="size-4" />
                           </Button>
-                          <Button size="icon" variant="ghost" aria-label="Baixar" onClick={() => toast.success("Download iniciado.")}>
+                          <Button
+                            size="icon"
+                            variant="ghost"
+                            aria-label="Baixar"
+                            onClick={() => toast.success("Download iniciado.")}
+                          >
                             <Download className="size-4" />
                           </Button>
                           <Button size="sm" variant="outline" asChild>
-                            <Link to="/assinaturas"><Send className="mr-1 size-3.5" /> Assinatura</Link>
+                            <Link to="/assinaturas">
+                              <Send className="mr-1 size-3.5" /> Assinatura
+                            </Link>
                           </Button>
                         </div>
                       </td>
@@ -142,8 +182,16 @@ function DocumentsPage() {
                     {patientName(d.patientId)} · {formatDate(d.createdAt)}
                   </p>
                   <div className="flex gap-2">
-                    <Button size="sm" variant="outline" onClick={() => toast.info("Pré-visualização do documento.")}>Visualizar</Button>
-                    <Button size="sm" variant="outline" asChild><Link to="/assinaturas">Enviar</Link></Button>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => toast.info("Pré-visualização do documento.")}
+                    >
+                      Visualizar
+                    </Button>
+                    <Button size="sm" variant="outline" asChild>
+                      <Link to="/assinaturas">Enviar</Link>
+                    </Button>
                   </div>
                 </li>
               ))}

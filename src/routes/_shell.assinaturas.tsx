@@ -19,7 +19,11 @@ export const Route = createFileRoute("/_shell/assinaturas")({
   head: () => ({
     meta: [
       { title: "Assinatura eletrônica · ClinicFlow" },
-      { name: "description", content: "Envio de documentos para assinatura eletrônica com signatários e trilha de eventos." },
+      {
+        name: "description",
+        content:
+          "Envio de documentos para assinatura eletrônica com signatários e trilha de eventos.",
+      },
       { property: "og:title", content: "Assinatura eletrônica · ClinicFlow" },
       { property: "og:description", content: "Fluxo completo de assinatura com rastreabilidade." },
     ],
@@ -70,7 +74,9 @@ function SignaturesPage() {
                 >
                   <p className="text-sm font-medium">{d.name}</p>
                   <p className="text-xs text-muted-foreground">{patientName(d.patientId)}</p>
-                  <div className="mt-1"><StatusBadge status={d.status} /></div>
+                  <div className="mt-1">
+                    <StatusBadge status={d.status} />
+                  </div>
                 </button>
               </li>
             ))}
@@ -87,7 +93,9 @@ function SignaturesPage() {
               <div className="grid gap-2 text-xs text-muted-foreground sm:grid-cols-4">
                 {["Documento", "Signatários", "Envio", "Assinatura"].map((step, i) => (
                   <div key={step} className="rounded-lg border border-border p-3 text-center">
-                    <p className="font-semibold text-foreground">{i + 1}. {step}</p>
+                    <p className="font-semibold text-foreground">
+                      {i + 1}. {step}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -98,10 +106,15 @@ function SignaturesPage() {
               ) : (
                 <ul className="mt-2 divide-y divide-border rounded-lg border border-border">
                   {selected.signers.map((s) => (
-                    <li key={s.email} className="flex flex-wrap items-center justify-between gap-2 px-4 py-3">
+                    <li
+                      key={s.email}
+                      className="flex flex-wrap items-center justify-between gap-2 px-4 py-3"
+                    >
                       <div>
                         <p className="text-sm font-medium">{s.name}</p>
-                        <p className="text-xs text-muted-foreground">{s.email} · {s.role}</p>
+                        <p className="text-xs text-muted-foreground">
+                          {s.email} · {s.role}
+                        </p>
                       </div>
                       <div className="flex items-center gap-3">
                         {s.signedAt ? (
@@ -121,7 +134,11 @@ function SignaturesPage() {
                 </div>
                 <div className="space-y-1">
                   <Label className="text-xs">E-mail</Label>
-                  <Input type="email" value={signerEmail} onChange={(e) => setSignerEmail(e.target.value)} />
+                  <Input
+                    type="email"
+                    value={signerEmail}
+                    onChange={(e) => setSignerEmail(e.target.value)}
+                  />
                 </div>
                 <Button
                   className="self-end"
@@ -143,7 +160,10 @@ function SignaturesPage() {
                 <Button onClick={() => toast.success("Documento enviado para assinatura.")}>
                   <ShieldCheck className="mr-1 size-4" /> Enviar para assinatura
                 </Button>
-                <Button variant="outline" onClick={() => toast.info("Lembrete reenviado aos signatários pendentes.")}>
+                <Button
+                  variant="outline"
+                  onClick={() => toast.info("Lembrete reenviado aos signatários pendentes.")}
+                >
                   Reenviar lembrete
                 </Button>
               </div>

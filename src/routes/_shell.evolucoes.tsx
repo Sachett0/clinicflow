@@ -27,7 +27,10 @@ export const Route = createFileRoute("/_shell/evolucoes")({
   head: () => ({
     meta: [
       { title: "Evoluções · ClinicFlow" },
-      { name: "description", content: "Registro de evolução do paciente com rascunho, finalização e trilha de correção." },
+      {
+        name: "description",
+        content: "Registro de evolução do paciente com rascunho, finalização e trilha de correção.",
+      },
       { property: "og:title", content: "Evoluções · ClinicFlow" },
       { property: "og:description", content: "Registre a evolução de cada sessão com segurança." },
     ],
@@ -39,7 +42,10 @@ const PROCEDURES = ["Alongamento", "Fortalecimento", "Mobilização", "Exercíci
 
 function EvolutionsPage() {
   const patients = useQuery({ queryKey: ["patients"], queryFn: patientService.list });
-  const professionals = useQuery({ queryKey: ["professionals"], queryFn: professionalService.list });
+  const professionals = useQuery({
+    queryKey: ["professionals"],
+    queryFn: professionalService.list,
+  });
   const records = useQuery({ queryKey: ["records"], queryFn: medicalRecordService.list });
 
   const [patientId, setPatientId] = useState("pa-1");
@@ -78,10 +84,14 @@ function EvolutionsPage() {
               <div className="space-y-2">
                 <Label>Paciente</Label>
                 <Select value={patientId} onValueChange={setPatientId}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
                   <SelectContent>
                     {(patients.data ?? []).map((p) => (
-                      <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>
+                      <SelectItem key={p.id} value={p.id}>
+                        {p.name}
+                      </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -93,10 +103,14 @@ function EvolutionsPage() {
               <div className="space-y-2">
                 <Label>Profissional</Label>
                 <Select value={professionalId} onValueChange={setProfessionalId}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
                   <SelectContent>
                     {(professionals.data ?? []).map((p) => (
-                      <SelectItem key={p.id} value={p.id}>{p.name}</SelectItem>
+                      <SelectItem key={p.id} value={p.id}>
+                        {p.name}
+                      </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -105,15 +119,26 @@ function EvolutionsPage() {
 
             <div className="space-y-2">
               <Label>Queixa</Label>
-              <Textarea rows={2} value={complaint} onChange={(e) => setComplaint(e.target.value)} placeholder="Relato do paciente na sessão" />
+              <Textarea
+                rows={2}
+                value={complaint}
+                onChange={(e) => setComplaint(e.target.value)}
+                placeholder="Relato do paciente na sessão"
+              />
             </div>
 
             <div className="space-y-2">
               <Label>Procedimentos realizados</Label>
               <div className="grid gap-2 sm:grid-cols-2">
                 {PROCEDURES.map((p) => (
-                  <label key={p} className="flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm">
-                    <Checkbox checked={procedures.includes(p)} onCheckedChange={() => toggleProcedure(p)} />
+                  <label
+                    key={p}
+                    className="flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm"
+                  >
+                    <Checkbox
+                      checked={procedures.includes(p)}
+                      onCheckedChange={() => toggleProcedure(p)}
+                    />
                     {p}
                   </label>
                 ))}
@@ -133,7 +158,12 @@ function EvolutionsPage() {
 
           <div className="mt-6 flex flex-wrap gap-2">
             {finalized ? (
-              <Button variant="outline" onClick={() => toast.success("Solicitação de correção enviada ao responsável técnico.")}>
+              <Button
+                variant="outline"
+                onClick={() =>
+                  toast.success("Solicitação de correção enviada ao responsável técnico.")
+                }
+              >
                 Solicitar correção
               </Button>
             ) : (
@@ -151,7 +181,9 @@ function EvolutionsPage() {
 
         <SectionCard title="Evoluções recentes" bodyClassName="p-0">
           {evolutions.length === 0 ? (
-            <div className="p-5"><EmptyState title="Nenhuma evolução registrada." /></div>
+            <div className="p-5">
+              <EmptyState title="Nenhuma evolução registrada." />
+            </div>
           ) : (
             <ul className="divide-y divide-border">
               {evolutions.map((e) => (
@@ -160,7 +192,9 @@ function EvolutionsPage() {
                     <p className="text-sm font-medium">{patientName(e.patientId)}</p>
                     <StatusBadge status={e.status} />
                   </div>
-                  <p className="text-xs text-muted-foreground">{formatDate(e.date)} · {e.title}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {formatDate(e.date)} · {e.title}
+                  </p>
                   <p className="mt-1 text-xs text-muted-foreground">{e.summary}</p>
                 </li>
               ))}

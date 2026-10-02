@@ -1,13 +1,5 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import {
-  Bell,
-  CircleHelp,
-  LogOut,
-  Menu,
-  Search,
-  Settings,
-  UserRound,
-} from "lucide-react";
+import { Bell, CircleHelp, LogOut, Menu, Search, Settings, UserRound } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -174,19 +166,21 @@ export function Topbar() {
             ))}
           </CommandGroup>
           <CommandGroup heading="Navegação">
-            {navGroups.flatMap((g) => g.items).map((item) => (
-              <CommandItem
-                key={item.to}
-                value={item.label}
-                onSelect={() => {
-                  setSearchOpen(false);
-                  navigate({ to: item.to });
-                }}
-              >
-                <item.icon className="mr-2 size-4" />
-                {item.label}
-              </CommandItem>
-            ))}
+            {navGroups
+              .flatMap((g) => g.items)
+              .map((item) => (
+                <CommandItem
+                  key={item.to}
+                  value={item.label}
+                  onSelect={() => {
+                    setSearchOpen(false);
+                    navigate({ to: item.to });
+                  }}
+                >
+                  <item.icon className="mr-2 size-4" />
+                  {item.label}
+                </CommandItem>
+              ))}
           </CommandGroup>
         </CommandList>
       </CommandDialog>

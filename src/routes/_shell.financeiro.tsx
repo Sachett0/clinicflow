@@ -26,7 +26,10 @@ export const Route = createFileRoute("/_shell/financeiro")({
   head: () => ({
     meta: [
       { title: "Financeiro · ClinicFlow" },
-      { name: "description", content: "Receita, cobranças, inadimplência e pacotes de sessões da clínica." },
+      {
+        name: "description",
+        content: "Receita, cobranças, inadimplência e pacotes de sessões da clínica.",
+      },
       { property: "og:title", content: "Financeiro · ClinicFlow" },
       { property: "og:description", content: "Controle receitas, cobranças e pacotes de sessões." },
     ],
@@ -54,14 +57,31 @@ function FinancialPage() {
       <PageHeader
         title="Financeiro"
         description="Acompanhe receitas, recebimentos e pacotes de sessões."
-        actions={<Button onClick={() => toast.success("Nova cobrança criada.")}>+ Nova cobrança</Button>}
+        actions={
+          <Button onClick={() => toast.success("Nova cobrança criada.")}>+ Nova cobrança</Button>
+        }
       />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <StatCard label="Receita do mês" value={currency(total)} icon={CircleDollarSign} trend={{ value: "+6,4%", positive: true }} />
-        <StatCard label="Recebido" value={currency(paid)} icon={Wallet} trend={{ value: "+12%", positive: true }} />
+        <StatCard
+          label="Receita do mês"
+          value={currency(total)}
+          icon={CircleDollarSign}
+          trend={{ value: "+6,4%", positive: true }}
+        />
+        <StatCard
+          label="Recebido"
+          value={currency(paid)}
+          icon={Wallet}
+          trend={{ value: "+12%", positive: true }}
+        />
         <StatCard label="Pendente" value={currency(pending)} icon={Clock3} />
-        <StatCard label="Em atraso" value={currency(late)} icon={AlertCircle} trend={{ value: "2 cobranças", positive: false }} />
+        <StatCard
+          label="Em atraso"
+          value={currency(late)}
+          icon={AlertCircle}
+          trend={{ value: "2 cobranças", positive: false }}
+        />
       </div>
 
       <Tabs defaultValue="cobrancas">
@@ -73,7 +93,9 @@ function FinancialPage() {
         <TabsContent value="cobrancas" className="mt-4 space-y-4">
           <SectionCard bodyClassName="p-4">
             <Select value={status} onValueChange={setStatus}>
-              <SelectTrigger className="sm:w-56"><SelectValue /></SelectTrigger>
+              <SelectTrigger className="sm:w-56">
+                <SelectValue />
+              </SelectTrigger>
               <SelectContent>
                 <SelectItem value="todos">Todos os status</SelectItem>
                 <SelectItem value="pendente">Pendente</SelectItem>
@@ -88,7 +110,9 @@ function FinancialPage() {
             {charges.isLoading ? (
               <TableSkeleton />
             ) : rows.length === 0 ? (
-              <div className="p-5"><EmptyState title="Nenhuma cobrança neste filtro." /></div>
+              <div className="p-5">
+                <EmptyState title="Nenhuma cobrança neste filtro." />
+              </div>
             ) : (
               <>
                 <div className="hidden overflow-x-auto md:block">
@@ -109,8 +133,12 @@ function FinancialPage() {
                           <td className="px-5 py-3 font-medium">{patientName(c.patientId)}</td>
                           <td className="px-5 py-3 text-muted-foreground">{c.description}</td>
                           <td className="px-5 py-3 font-semibold">{currencyPrecise(c.amount)}</td>
-                          <td className="px-5 py-3 text-muted-foreground">{formatDate(c.dueDate)}</td>
-                          <td className="px-5 py-3"><StatusBadge status={c.status} /></td>
+                          <td className="px-5 py-3 text-muted-foreground">
+                            {formatDate(c.dueDate)}
+                          </td>
+                          <td className="px-5 py-3">
+                            <StatusBadge status={c.status} />
+                          </td>
                           <td className="px-5 py-3 text-muted-foreground">{c.method}</td>
                         </tr>
                       ))}
@@ -127,7 +155,9 @@ function FinancialPage() {
                       </div>
                       <p className="text-xs text-muted-foreground">{c.description}</p>
                       <p className="text-sm font-semibold">{currencyPrecise(c.amount)}</p>
-                      <p className="text-xs text-muted-foreground">Vence em {formatDate(c.dueDate)} · {c.method}</p>
+                      <p className="text-xs text-muted-foreground">
+                        Vence em {formatDate(c.dueDate)} · {c.method}
+                      </p>
                     </li>
                   ))}
                 </ul>
@@ -148,7 +178,9 @@ function FinancialPage() {
                   <Progress value={pct} className="mt-3" />
                   <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
                     <span>Válido até {formatDate(p.validUntil)}</span>
-                    <span className="font-semibold text-foreground">{currencyPrecise(p.price)}</span>
+                    <span className="font-semibold text-foreground">
+                      {currencyPrecise(p.price)}
+                    </span>
                   </div>
                 </SectionCard>
               );

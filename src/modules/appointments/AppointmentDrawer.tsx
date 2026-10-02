@@ -64,11 +64,19 @@ export function AppointmentDrawer({
                 </dl>
 
                 <div className="grid gap-2 sm:grid-cols-2">
-                  <Button onClick={() => toast.success("Atendimento confirmado.")}>Confirmar</Button>
-                  <Button variant="secondary" onClick={() => toast.success("Atendimento iniciado.")}>
+                  <Button onClick={() => toast.success("Atendimento confirmado.")}>
+                    Confirmar
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    onClick={() => toast.success("Atendimento iniciado.")}
+                  >
                     Iniciar atendimento
                   </Button>
-                  <Button variant="outline" onClick={() => toast.info("Selecione um novo horário na agenda.")}>
+                  <Button
+                    variant="outline"
+                    onClick={() => toast.info("Selecione um novo horário na agenda.")}
+                  >
                     Reagendar
                   </Button>
                   <Button variant="outline" onClick={() => setConfirmCancel(true)}>

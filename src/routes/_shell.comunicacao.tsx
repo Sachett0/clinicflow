@@ -20,7 +20,10 @@ export const Route = createFileRoute("/_shell/comunicacao")({
   head: () => ({
     meta: [
       { title: "Comunicação · ClinicFlow" },
-      { name: "description", content: "Mensagens de WhatsApp, templates e indicadores de confirmação de consulta." },
+      {
+        name: "description",
+        content: "Mensagens de WhatsApp, templates e indicadores de confirmação de consulta.",
+      },
       { property: "og:title", content: "Comunicação · ClinicFlow" },
       { property: "og:description", content: "Converse com pacientes e automatize confirmações." },
     ],
@@ -29,7 +32,10 @@ export const Route = createFileRoute("/_shell/comunicacao")({
 });
 
 function CommunicationPage() {
-  const conversations = useQuery({ queryKey: ["conversations"], queryFn: whatsappService.conversations });
+  const conversations = useQuery({
+    queryKey: ["conversations"],
+    queryFn: whatsappService.conversations,
+  });
   const templates = useQuery({ queryKey: ["wa-templates"], queryFn: whatsappService.templates });
   const patients = useQuery({ queryKey: ["patients"], queryFn: patientService.list });
 
@@ -42,13 +48,26 @@ function CommunicationPage() {
 
   return (
     <>
-      <PageHeader title="Comunicação" description="WhatsApp integrado ao fluxo de atendimento da clínica." />
+      <PageHeader
+        title="Comunicação"
+        description="WhatsApp integrado ao fluxo de atendimento da clínica."
+      />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <StatCard label="Mensagens enviadas" value="482" icon={Send} hint="últimos 30 dias" />
-        <StatCard label="Confirmadas" value="367" icon={CheckCheck} trend={{ value: "76%", positive: true }} />
+        <StatCard
+          label="Confirmadas"
+          value="367"
+          icon={CheckCheck}
+          trend={{ value: "76%", positive: true }}
+        />
         <StatCard label="Pendentes" value="94" icon={MessageCircle} />
-        <StatCard label="Falhas" value="21" icon={TriangleAlert} trend={{ value: "4,3%", positive: false }} />
+        <StatCard
+          label="Falhas"
+          value="21"
+          icon={TriangleAlert}
+          trend={{ value: "4,3%", positive: false }}
+        />
       </div>
 
       <Tabs defaultValue="conversas">
@@ -104,7 +123,10 @@ function CommunicationPage() {
                       {active.messages.map((m) => (
                         <div
                           key={m.id}
-                          className={cn("flex", m.from === "clinica" ? "justify-end" : "justify-start")}
+                          className={cn(
+                            "flex",
+                            m.from === "clinica" ? "justify-end" : "justify-start",
+                          )}
                         >
                           <div
                             className={cn(
@@ -131,8 +153,14 @@ function CommunicationPage() {
                         setDraft("");
                       }}
                     >
-                      <Input placeholder="Escreva uma mensagem" value={draft} onChange={(e) => setDraft(e.target.value)} />
-                      <Button type="submit"><Send className="size-4" /></Button>
+                      <Input
+                        placeholder="Escreva uma mensagem"
+                        value={draft}
+                        onChange={(e) => setDraft(e.target.value)}
+                      />
+                      <Button type="submit">
+                        <Send className="size-4" />
+                      </Button>
                     </form>
                   </div>
                 </SectionCard>
@@ -154,12 +182,16 @@ function CommunicationPage() {
                     <StatusBadge status={t.active ? "ativo" : "inativo"} />
                     <Switch
                       defaultChecked={t.active}
-                      onCheckedChange={(v) => toast.success(v ? "Template ativado." : "Template desativado.")}
+                      onCheckedChange={(v) =>
+                        toast.success(v ? "Template ativado." : "Template desativado.")
+                      }
                       aria-label={`Ativar template ${t.name}`}
                     />
                   </div>
                 </div>
-                <p className="mt-3 rounded-lg bg-muted/60 p-3 text-sm text-muted-foreground">{t.body}</p>
+                <p className="mt-3 rounded-lg bg-muted/60 p-3 text-sm text-muted-foreground">
+                  {t.body}
+                </p>
               </SectionCard>
             ))}
           </div>

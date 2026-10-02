@@ -39,7 +39,11 @@ export function SidebarNav({
             onClick={onToggle}
             aria-label={collapsed ? "Expandir menu" : "Recolher menu"}
           >
-            {collapsed ? <PanelLeftOpen className="size-4" /> : <PanelLeftClose className="size-4" />}
+            {collapsed ? (
+              <PanelLeftOpen className="size-4" />
+            ) : (
+              <PanelLeftClose className="size-4" />
+            )}
           </Button>
         ) : null}
       </div>
@@ -93,7 +97,8 @@ export function SidebarNav({
                           onClick={onNavigate}
                           className={cn(
                             "flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
-                            isActive(child.to) && "bg-sidebar-accent text-sidebar-accent-foreground",
+                            isActive(child.to) &&
+                              "bg-sidebar-accent text-sidebar-accent-foreground",
                           )}
                         >
                           <child.icon className="size-3.5" />

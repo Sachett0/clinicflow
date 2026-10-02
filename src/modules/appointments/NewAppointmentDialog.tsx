@@ -53,7 +53,10 @@ export function NewAppointmentDialog({ trigger }: { trigger?: ReactNode }) {
   const [sendWhatsapp, setSendWhatsapp] = useState(true);
 
   const patients = useQuery({ queryKey: ["patients"], queryFn: patientService.list });
-  const professionals = useQuery({ queryKey: ["professionals"], queryFn: professionalService.list });
+  const professionals = useQuery({
+    queryKey: ["professionals"],
+    queryFn: professionalService.list,
+  });
   const rooms = useQuery({ queryKey: ["rooms"], queryFn: roomService.list });
   const services = useQuery({ queryKey: ["services"], queryFn: serviceCatalog.list });
   const appointments = useQuery({ queryKey: ["appointments"], queryFn: appointmentService.list });
@@ -156,7 +159,11 @@ export function NewAppointmentDialog({ trigger }: { trigger?: ReactNode }) {
           </div>
 
           <Field label="Observações">
-            <Textarea rows={3} placeholder="Informações relevantes para o atendimento" {...form.register("notes")} />
+            <Textarea
+              rows={3}
+              placeholder="Informações relevantes para o atendimento"
+              {...form.register("notes")}
+            />
           </Field>
 
           {conflict ? (
@@ -179,7 +186,9 @@ export function NewAppointmentDialog({ trigger }: { trigger?: ReactNode }) {
               Cancelar
             </Button>
             <Button type="submit" disabled={form.formState.isSubmitting}>
-              {form.formState.isSubmitting ? <Loader2 className="mr-2 size-4 animate-spin" /> : null}
+              {form.formState.isSubmitting ? (
+                <Loader2 className="mr-2 size-4 animate-spin" />
+              ) : null}
               Salvar agendamento
             </Button>
           </DialogFooter>

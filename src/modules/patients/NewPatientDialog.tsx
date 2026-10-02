@@ -64,15 +64,23 @@ export function NewPatientDialog({ trigger }: { trigger?: ReactNode }) {
       <DialogContent className="max-h-[92vh] overflow-y-auto sm:max-w-2xl">
         <DialogHeader>
           <DialogTitle>Novo paciente</DialogTitle>
-          <DialogDescription>Cadastro completo com dados pessoais, endereço e informações clínicas.</DialogDescription>
+          <DialogDescription>
+            Cadastro completo com dados pessoais, endereço e informações clínicas.
+          </DialogDescription>
         </DialogHeader>
 
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <Tabs defaultValue="pessoais">
             <TabsList className="w-full">
-              <TabsTrigger value="pessoais" className="flex-1">Dados pessoais</TabsTrigger>
-              <TabsTrigger value="endereco" className="flex-1">Endereço</TabsTrigger>
-              <TabsTrigger value="clinico" className="flex-1">Clínico</TabsTrigger>
+              <TabsTrigger value="pessoais" className="flex-1">
+                Dados pessoais
+              </TabsTrigger>
+              <TabsTrigger value="endereco" className="flex-1">
+                Endereço
+              </TabsTrigger>
+              <TabsTrigger value="clinico" className="flex-1">
+                Clínico
+              </TabsTrigger>
             </TabsList>
 
             <TabsContent value="pessoais" className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -103,23 +111,45 @@ export function NewPatientDialog({ trigger }: { trigger?: ReactNode }) {
             </TabsContent>
 
             <TabsContent value="endereco" className="mt-4 grid gap-4 sm:grid-cols-2">
-              <F label="CEP"><Input {...form.register("zip")} /></F>
-              <F label="Rua"><Input {...form.register("street")} /></F>
-              <F label="Número"><Input {...form.register("number")} /></F>
-              <F label="Complemento"><Input {...form.register("complement")} /></F>
-              <F label="Bairro"><Input {...form.register("district")} /></F>
-              <F label="Cidade"><Input {...form.register("city")} /></F>
-              <F label="Estado"><Input {...form.register("state")} /></F>
+              <F label="CEP">
+                <Input {...form.register("zip")} />
+              </F>
+              <F label="Rua">
+                <Input {...form.register("street")} />
+              </F>
+              <F label="Número">
+                <Input {...form.register("number")} />
+              </F>
+              <F label="Complemento">
+                <Input {...form.register("complement")} />
+              </F>
+              <F label="Bairro">
+                <Input {...form.register("district")} />
+              </F>
+              <F label="Cidade">
+                <Input {...form.register("city")} />
+              </F>
+              <F label="Estado">
+                <Input {...form.register("state")} />
+              </F>
             </TabsContent>
 
             <TabsContent value="clinico" className="mt-4 grid gap-4 sm:grid-cols-2">
               <F label="Queixa principal" className="sm:col-span-2">
                 <Textarea rows={2} {...form.register("mainComplaint")} />
               </F>
-              <F label="Diagnóstico"><Input {...form.register("diagnosis")} /></F>
-              <F label="Médico responsável"><Input {...form.register("referringDoctor")} /></F>
-              <F label="Alergias"><Input {...form.register("allergies")} /></F>
-              <F label="Medicamentos"><Input {...form.register("medications")} /></F>
+              <F label="Diagnóstico">
+                <Input {...form.register("diagnosis")} />
+              </F>
+              <F label="Médico responsável">
+                <Input {...form.register("referringDoctor")} />
+              </F>
+              <F label="Alergias">
+                <Input {...form.register("allergies")} />
+              </F>
+              <F label="Medicamentos">
+                <Input {...form.register("medications")} />
+              </F>
               <F label="Observações" className="sm:col-span-2">
                 <Textarea rows={2} {...form.register("notes")} />
               </F>
@@ -131,7 +161,9 @@ export function NewPatientDialog({ trigger }: { trigger?: ReactNode }) {
               Cancelar
             </Button>
             <Button type="submit" disabled={form.formState.isSubmitting}>
-              {form.formState.isSubmitting ? <Loader2 className="mr-2 size-4 animate-spin" /> : null}
+              {form.formState.isSubmitting ? (
+                <Loader2 className="mr-2 size-4 animate-spin" />
+              ) : null}
               Salvar paciente
             </Button>
           </DialogFooter>

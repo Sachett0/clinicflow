@@ -26,7 +26,10 @@ export const Route = createFileRoute("/_shell/pacientes/$id")({
   head: () => ({
     meta: [
       { title: "Perfil do paciente · ClinicFlow" },
-      { name: "description", content: "Resumo clínico, prontuário, evoluções, documentos e financeiro do paciente." },
+      {
+        name: "description",
+        content: "Resumo clínico, prontuário, evoluções, documentos e financeiro do paciente.",
+      },
       { property: "og:title", content: "Perfil do paciente · ClinicFlow" },
       { property: "og:description", content: "Histórico completo do paciente em um só lugar." },
     ],
@@ -37,12 +40,24 @@ export const Route = createFileRoute("/_shell/pacientes/$id")({
 function PatientProfilePage() {
   const { id } = useParams({ from: "/_shell/pacientes/$id" });
   const patient = useQuery({ queryKey: ["patient", id], queryFn: () => patientService.byId(id) });
-  const records = useQuery({ queryKey: ["records", id], queryFn: () => medicalRecordService.byPatient(id) });
-  const appointments = useQuery({ queryKey: ["appointments", id], queryFn: () => appointmentService.byPatient(id) });
-  const plan = useQuery({ queryKey: ["plan", id], queryFn: () => therapyPlanService.byPatient(id) });
+  const records = useQuery({
+    queryKey: ["records", id],
+    queryFn: () => medicalRecordService.byPatient(id),
+  });
+  const appointments = useQuery({
+    queryKey: ["appointments", id],
+    queryFn: () => appointmentService.byPatient(id),
+  });
+  const plan = useQuery({
+    queryKey: ["plan", id],
+    queryFn: () => therapyPlanService.byPatient(id),
+  });
   const documents = useQuery({ queryKey: ["documents"], queryFn: documentService.list });
   const charges = useQuery({ queryKey: ["charges"], queryFn: financialService.charges });
-  const professionals = useQuery({ queryKey: ["professionals"], queryFn: professionalService.list });
+  const professionals = useQuery({
+    queryKey: ["professionals"],
+    queryFn: professionalService.list,
+  });
 
   if (patient.isLoading) return <BlockSkeleton className="h-96" />;
   const p = patient.data;
@@ -68,7 +83,10 @@ function PatientProfilePage() {
 
   return (
     <>
-      <Link to="/pacientes" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+      <Link
+        to="/pacientes"
+        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
+      >
         <ArrowLeft className="size-4" /> Pacientes
       </Link>
 
@@ -98,10 +116,14 @@ function PatientProfilePage() {
               <Link to="/evolucoes">Nova evolução</Link>
             </Button>
             <Button size="sm" variant="outline" asChild>
-              <Link to="/documentos"><FileText className="mr-1 size-4" /> Novo documento</Link>
+              <Link to="/documentos">
+                <FileText className="mr-1 size-4" /> Novo documento
+              </Link>
             </Button>
             <Button size="sm" variant="secondary" asChild>
-              <Link to="/comunicacao"><MessageCircle className="mr-1 size-4" /> Enviar WhatsApp</Link>
+              <Link to="/comunicacao">
+                <MessageCircle className="mr-1 size-4" /> Enviar WhatsApp
+              </Link>
             </Button>
           </div>
         </div>
@@ -158,7 +180,9 @@ function PatientProfilePage() {
                     <div className="space-y-1">
                       <p>{r.summary}</p>
                       {r.signedBy ? (
-                        <p className="text-xs">Assinado por {r.signedBy} em {r.signedAt}</p>
+                        <p className="text-xs">
+                          Assinado por {r.signedBy} em {r.signedAt}
+                        </p>
                       ) : null}
                       {r.attachments.length > 0 ? (
                         <p className="text-xs">Anexos: {r.attachments.join(", ")}</p>
@@ -173,11 +197,19 @@ function PatientProfilePage() {
         </TabsContent>
 
         <TabsContent value="avaliacoes" className="mt-4">
-          <RecordList items={evaluations} emptyLabel="Nenhuma avaliação registrada." profName={profName} />
+          <RecordList
+            items={evaluations}
+            emptyLabel="Nenhuma avaliação registrada."
+            profName={profName}
+          />
         </TabsContent>
 
         <TabsContent value="evolucoes" className="mt-4">
-          <RecordList items={evolutions} emptyLabel="Nenhuma evolução registrada." profName={profName} />
+          <RecordList
+            items={evolutions}
+            emptyLabel="Nenhuma evolução registrada."
+            profName={profName}
+          />
         </TabsContent>
 
         <TabsContent value="plano" className="mt-4">
@@ -187,7 +219,10 @@ function PatientProfilePage() {
                 <Info label="Início" value={formatDate(plan.data.startDate)} />
                 <Info label="Previsão de término" value={formatDate(plan.data.endDate)} />
                 <Info label="Frequência" value={plan.data.frequency} />
-                <Info label="Sessões" value={`${plan.data.usedSessions}/${plan.data.totalSessions}`} />
+                <Info
+                  label="Sessões"
+                  value={`${plan.data.usedSessions}/${plan.data.totalSessions}`}
+                />
               </div>
               <div className="mt-6 space-y-4">
                 {plan.data.goals.map((g) => (
@@ -213,14 +248,21 @@ function PatientProfilePage() {
         <TabsContent value="documentos" className="mt-4">
           <SectionCard title="Documentos do paciente" bodyClassName="p-0">
             {patientDocs.length === 0 ? (
-              <div className="p-5"><EmptyState title="Nenhum documento vinculado." /></div>
+              <div className="p-5">
+                <EmptyState title="Nenhum documento vinculado." />
+              </div>
             ) : (
               <ul className="divide-y divide-border">
                 {patientDocs.map((d) => (
-                  <li key={d.id} className="flex flex-wrap items-center justify-between gap-2 px-5 py-3">
+                  <li
+                    key={d.id}
+                    className="flex flex-wrap items-center justify-between gap-2 px-5 py-3"
+                  >
                     <div>
                       <p className="text-sm font-medium">{d.name}</p>
-                      <p className="text-xs text-muted-foreground">Criado em {formatDate(d.createdAt)}</p>
+                      <p className="text-xs text-muted-foreground">
+                        Criado em {formatDate(d.createdAt)}
+                      </p>
                     </div>
                     <StatusBadge status={d.status} />
                   </li>
@@ -233,11 +275,16 @@ function PatientProfilePage() {
         <TabsContent value="financeiro" className="mt-4">
           <SectionCard title="Cobranças" bodyClassName="p-0">
             {patientCharges.length === 0 ? (
-              <div className="p-5"><EmptyState title="Nenhuma cobrança registrada." /></div>
+              <div className="p-5">
+                <EmptyState title="Nenhuma cobrança registrada." />
+              </div>
             ) : (
               <ul className="divide-y divide-border">
                 {patientCharges.map((c) => (
-                  <li key={c.id} className="flex flex-wrap items-center justify-between gap-2 px-5 py-3">
+                  <li
+                    key={c.id}
+                    className="flex flex-wrap items-center justify-between gap-2 px-5 py-3"
+                  >
                     <div>
                       <p className="text-sm font-medium">{c.description}</p>
                       <p className="text-xs text-muted-foreground">
@@ -258,13 +305,20 @@ function PatientProfilePage() {
         <TabsContent value="historico" className="mt-4">
           <SectionCard title="Histórico de atendimentos" bodyClassName="p-0">
             {(appointments.data ?? []).length === 0 ? (
-              <div className="p-5"><EmptyState title="Não há atendimentos para este período." /></div>
+              <div className="p-5">
+                <EmptyState title="Não há atendimentos para este período." />
+              </div>
             ) : (
               <ul className="divide-y divide-border">
                 {(appointments.data ?? []).map((a) => (
-                  <li key={a.id} className="flex flex-wrap items-center justify-between gap-2 px-5 py-3">
+                  <li
+                    key={a.id}
+                    className="flex flex-wrap items-center justify-between gap-2 px-5 py-3"
+                  >
                     <div>
-                      <p className="text-sm font-medium">{formatDate(a.date)} · {a.start}</p>
+                      <p className="text-sm font-medium">
+                        {formatDate(a.date)} · {a.start}
+                      </p>
                       <p className="text-xs text-muted-foreground">{profName(a.professionalId)}</p>
                     </div>
                     <StatusBadge status={a.status} />
@@ -284,7 +338,14 @@ function RecordList({
   emptyLabel,
   profName,
 }: {
-  items: { id: string; title: string; date: string; status: string; summary: string; professionalId: string }[];
+  items: {
+    id: string;
+    title: string;
+    date: string;
+    status: string;
+    summary: string;
+    professionalId: string;
+  }[];
   emptyLabel: string;
   profName: (id: string) => string;
 }) {
@@ -292,9 +353,15 @@ function RecordList({
   return (
     <div className="grid gap-4 md:grid-cols-2">
       {items.map((r) => (
-        <SectionCard key={r.id} title={r.title} description={`${formatDate(r.date)} · ${profName(r.professionalId)}`}>
+        <SectionCard
+          key={r.id}
+          title={r.title}
+          description={`${formatDate(r.date)} · ${profName(r.professionalId)}`}
+        >
           <p className="text-sm text-muted-foreground">{r.summary}</p>
-          <div className="mt-3"><StatusBadge status={r.status} /></div>
+          <div className="mt-3">
+            <StatusBadge status={r.status} />
+          </div>
         </SectionCard>
       ))}
     </div>

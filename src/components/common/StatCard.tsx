@@ -31,10 +31,16 @@ export function StatCard({
           <span
             className={cn(
               "inline-flex items-center gap-1 rounded-full px-2 py-0.5 font-medium",
-              trend.positive ? "bg-success-soft text-success" : "bg-destructive-soft text-destructive",
+              trend.positive
+                ? "bg-success-soft text-success"
+                : "bg-destructive-soft text-destructive",
             )}
           >
-            {trend.positive ? <ArrowUpRight className="size-3" /> : <ArrowDownRight className="size-3" />}
+            {trend.positive ? (
+              <ArrowUpRight className="size-3" />
+            ) : (
+              <ArrowDownRight className="size-3" />
+            )}
             {trend.value}
           </span>
         ) : null}

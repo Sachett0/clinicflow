@@ -88,13 +88,7 @@ export interface Patient extends TenantScoped {
 }
 
 export type AppointmentStatus =
-  | "agendado"
-  | "confirmado"
-  | "checkin"
-  | "atendimento"
-  | "finalizado"
-  | "cancelado"
-  | "faltou";
+  "agendado" | "confirmado" | "checkin" | "atendimento" | "finalizado" | "cancelado" | "faltou";
 
 export interface Appointment extends TenantScoped {
   patientId: ID;
@@ -176,20 +170,10 @@ export interface TherapyPlan extends TenantScoped {
 }
 
 export type DocumentStatus =
-  | "rascunho"
-  | "enviado"
-  | "aguardando"
-  | "assinado"
-  | "recusado"
-  | "expirado";
+  "rascunho" | "enviado" | "aguardando" | "assinado" | "recusado" | "expirado";
 
 export type DocumentCategory =
-  | "termos"
-  | "contratos"
-  | "avaliacoes"
-  | "declaracoes"
-  | "relatorios"
-  | "outros";
+  "termos" | "contratos" | "avaliacoes" | "declaracoes" | "relatorios" | "outros";
 
 export interface Signer {
   name: string;

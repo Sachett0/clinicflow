@@ -57,8 +57,7 @@ WhatsApp Business API
 
 provedor externo de assinatura eletrônica
 
-==================================================
-2. IDENTIDADE VISUAL
+================================================== 2. IDENTIDADE VISUAL
 
 Criar uma identidade visual moderna, elegante e profissional para uma empresa de tecnologia voltada à área da saúde.
 
@@ -114,8 +113,7 @@ tablet
 
 celular
 
-==================================================
-3. ESTRUTURA PRINCIPAL
+================================================== 3. ESTRUTURA PRINCIPAL
 
 Criar um dashboard administrativo com:
 
@@ -161,8 +159,7 @@ A sidebar deve poder ser recolhida.
 
 Em telas pequenas, transformar a sidebar em menu lateral/mobile drawer.
 
-==================================================
-4. DASHBOARD
+================================================== 4. DASHBOARD
 
 Criar uma página inicial profissional.
 
@@ -214,8 +211,7 @@ atividades recentes
 
 Criar visualizações com gráficos modernos.
 
-==================================================
-5. AGENDA
+================================================== 5. AGENDA
 
 Criar uma agenda completa.
 
@@ -294,8 +290,7 @@ Cancelar
 
 Abrir prontuário
 
-==================================================
-6. NOVO AGENDAMENTO
+================================================== 6. NOVO AGENDAMENTO
 
 Criar formulário:
 
@@ -318,8 +313,7 @@ Também mostrar opção:
 
 "Enviar confirmação pelo WhatsApp"
 
-==================================================
-7. PACIENTES
+================================================== 7. PACIENTES
 
 Criar página de pacientes com:
 
@@ -394,8 +388,7 @@ Medicamentos
 
 Observações
 
-==================================================
-8. PERFIL DO PACIENTE
+================================================== 8. PERFIL DO PACIENTE
 
 Criar uma página detalhada.
 
@@ -436,8 +429,7 @@ Financeiro
 
 Histórico
 
-==================================================
-9. PRONTUÁRIO
+================================================== 9. PRONTUÁRIO
 
 Criar timeline clínica.
 
@@ -475,8 +467,7 @@ anexos
 
 Registros finalizados devem apresentar indicador visual de que estão finalizados.
 
-==================================================
-10. AVALIAÇÕES
+================================================== 10. AVALIAÇÕES
 
 Criar uma página de modelos de avaliação.
 
@@ -537,8 +528,7 @@ assinatura
 
 Permitir reorganizar os campos.
 
-==================================================
-11. EVOLUÇÕES
+================================================== 11. EVOLUÇÕES
 
 Criar tela para registrar evolução do paciente.
 
@@ -583,8 +573,7 @@ Adicionar opção:
 
 "Solicitar correção"
 
-==================================================
-12. PLANO TERAPÊUTICO
+================================================== 12. PLANO TERAPÊUTICO
 
 Criar módulo:
 
@@ -622,8 +611,7 @@ Prazo:
 
 Mostrar progresso visual.
 
-==================================================
-13. DOCUMENTOS
+================================================== 13. DOCUMENTOS
 
 Criar biblioteca de documentos.
 
@@ -671,8 +659,7 @@ Baixar
 
 Enviar para assinatura
 
-==================================================
-14. ASSINATURA ELETRÔNICA
+================================================== 14. ASSINATURA ELETRÔNICA
 
 Criar interface de assinatura eletrônica preparada para futura integração com API externa.
 
@@ -707,8 +694,7 @@ status
 
 Não implementar uma assinatura juridicamente válida apenas desenhando uma assinatura na tela. Criar a interface preparada para integração com um provedor externo especializado.
 
-==================================================
-15. WHATSAPP
+================================================== 15. WHATSAPP
 
 Criar módulo de comunicação.
 
@@ -749,8 +735,7 @@ Lido
 
 Preparar arquitetura para futura integração com WhatsApp Business API.
 
-==================================================
-16. FINANCEIRO
+================================================== 16. FINANCEIRO
 
 Criar dashboard financeiro.
 
@@ -792,8 +777,7 @@ Pacote de fisioterapia
 
 Mostrar barra de progresso.
 
-==================================================
-17. RELATÓRIOS
+================================================== 17. RELATÓRIOS
 
 Criar página:
 
@@ -827,8 +811,7 @@ Botões:
 
 Criar gráficos profissionais.
 
-==================================================
-18. NOTIFICAÇÕES
+================================================== 18. NOTIFICAÇÕES
 
 Criar sistema de notificações.
 
@@ -844,8 +827,7 @@ Exemplos:
 
 Mostrar badge de notificações no header.
 
-==================================================
-19. CONFIGURAÇÕES
+================================================== 19. CONFIGURAÇÕES
 
 Criar página de configurações com abas:
 
@@ -861,8 +843,7 @@ Notificações
 Financeiro
 Segurança
 
-==================================================
-20. USUÁRIOS E PERMISSÕES
+================================================== 20. USUÁRIOS E PERMISSÕES
 
 Criar gerenciamento de usuários.
 
@@ -893,8 +874,7 @@ financial.create
 
 Mostrar interface para definir permissões.
 
-==================================================
-21. AUDITORIA
+================================================== 21. AUDITORIA
 
 Criar página:
 
@@ -918,8 +898,7 @@ Documento enviado
 Documento assinado
 Pagamento registrado
 
-==================================================
-22. LOGIN
+================================================== 22. LOGIN
 
 Criar tela de login profissional.
 
@@ -946,8 +925,7 @@ Link:
 
 Adicionar opção visual para futura autenticação MFA.
 
-==================================================
-23. RESPONSIVIDADE
+================================================== 23. RESPONSIVIDADE
 
 O sistema deve funcionar muito bem em:
 
@@ -968,8 +946,7 @@ formulários devem ocupar toda a largura
 
 botões devem ser fáceis de tocar
 
-==================================================
-24. DADOS DEMONSTRATIVOS
+================================================== 24. DADOS DEMONSTRATIVOS
 
 Durante a construção do frontend, utilizar dados fictícios realistas apenas para demonstrar a interface.
 
@@ -989,8 +966,7 @@ dados financeiros fictícios
 
 Deixar a camada de dados organizada para posteriormente substituir facilmente os mocks por chamadas à API.
 
-==================================================
-25. REGRAS DE UX
+================================================== 25. REGRAS DE UX
 
 A aplicação deve:
 
@@ -1024,8 +1000,7 @@ Botão:
 
 "+ Novo agendamento"
 
-==================================================
-26. DASHBOARD MOBILE
+================================================== 26. DASHBOARD MOBILE
 
 No celular mostrar:
 
@@ -1042,8 +1017,7 @@ Depois:
 
 Notificações
 
-==================================================
-27. COMPONENTES REUTILIZÁVEIS
+================================================== 27. COMPONENTES REUTILIZÁVEIS
 
 Criar componentes reutilizáveis:
 
@@ -1069,8 +1043,7 @@ ConfirmDialog
 EmptyState
 LoadingState
 
-==================================================
-28. ARQUITETURA DO FRONTEND
+================================================== 28. ARQUITETURA DO FRONTEND
 
 Organizar por domínio, não apenas por tipo de componente.
 
@@ -1094,8 +1067,7 @@ settings/
 
 Criar hooks e serviços específicos para cada módulo.
 
-==================================================
-29. PREPARAÇÃO PARA BACKEND
+================================================== 29. PREPARAÇÃO PARA BACKEND
 
 Não acople os componentes diretamente aos mocks.
 
@@ -1121,8 +1093,7 @@ GET /api/v1/appointments
 POST /api/v1/appointments
 etc.
 
-==================================================
-30. SEGURANÇA E PRIVACIDADE
+================================================== 30. SEGURANÇA E PRIVACIDADE
 
 O sistema será destinado a dados de saúde.
 
@@ -1150,8 +1121,7 @@ preparar arquitetura para LGPD
 
 Criar um aviso visual indicando que os dados apresentados no protótipo são fictícios.
 
-==================================================
-31. MULTI-TENANT
+================================================== 31. MULTI-TENANT
 
 Mesmo sendo um protótipo inicial, preparar a arquitetura para várias clínicas.
 
@@ -1169,8 +1139,7 @@ Os dados de uma clínica nunca devem ser exibidos para outra.
 
 Criar no perfil do usuário a informação da clínica atual.
 
-==================================================
-32. EXPERIÊNCIA VISUAL
+================================================== 32. EXPERIÊNCIA VISUAL
 
 Quero uma experiência semelhante à de um produto SaaS moderno.
 
@@ -1204,8 +1173,7 @@ Não criar um site institucional simples.
 
 Criar uma aplicação web completa de gestão clínica, com várias páginas navegáveis.
 
-==================================================
-33. MENU FINAL
+================================================== 33. MENU FINAL
 
 Sidebar:
 
@@ -1231,8 +1199,7 @@ Relatórios
 
 Configurações
 
-==================================================
-34. PRIMEIRA ENTREGA
+================================================== 34. PRIMEIRA ENTREGA
 
 Primeiro implemente o frontend completo e navegável.
 
@@ -1274,8 +1241,7 @@ Não criar apenas uma landing page.
 
 Quero conseguir navegar pela aplicação inteira como se fosse um produto real.
 
-==================================================
-35. QUALIDADE
+================================================== 35. QUALIDADE
 
 Antes de finalizar:
 

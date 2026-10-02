@@ -25,9 +25,15 @@ export const Route = createFileRoute("/_shell/prontuarios")({
   head: () => ({
     meta: [
       { title: "Prontuários · ClinicFlow" },
-      { name: "description", content: "Linha do tempo clínica com avaliações, evoluções, assinaturas e anexos." },
+      {
+        name: "description",
+        content: "Linha do tempo clínica com avaliações, evoluções, assinaturas e anexos.",
+      },
       { property: "og:title", content: "Prontuários · ClinicFlow" },
-      { property: "og:description", content: "Registros clínicos organizados por paciente e profissional." },
+      {
+        property: "og:description",
+        content: "Registros clínicos organizados por paciente e profissional.",
+      },
     ],
   }),
   component: RecordsPage,
@@ -39,7 +45,10 @@ function RecordsPage() {
 
   const records = useQuery({ queryKey: ["records"], queryFn: medicalRecordService.list });
   const patients = useQuery({ queryKey: ["patients"], queryFn: patientService.list });
-  const professionals = useQuery({ queryKey: ["professionals"], queryFn: professionalService.list });
+  const professionals = useQuery({
+    queryKey: ["professionals"],
+    queryFn: professionalService.list,
+  });
 
   const patientName = (id: string) => patients.data?.find((p) => p.id === id)?.name ?? "—";
   const profName = (id: string) => professionals.data?.find((p) => p.id === id)?.name ?? "—";
@@ -61,7 +70,11 @@ function RecordsPage() {
       />
 
       <SectionCard bodyClassName="p-4">
-        <Input placeholder="Buscar por paciente" value={term} onChange={(e) => setTerm(e.target.value)} />
+        <Input
+          placeholder="Buscar por paciente"
+          value={term}
+          onChange={(e) => setTerm(e.target.value)}
+        />
       </SectionCard>
 
       <SectionCard title="Linha do tempo clínica">
@@ -103,7 +116,9 @@ function RecordsPage() {
                 <div className="flex items-center gap-2">
                   <StatusBadge status={selected.status} />
                   {selected.status === "finalizado" ? (
-                    <span className="text-xs text-muted-foreground">Registro finalizado — edição bloqueada</span>
+                    <span className="text-xs text-muted-foreground">
+                      Registro finalizado — edição bloqueada
+                    </span>
                   ) : null}
                 </div>
                 <dl className="space-y-3 text-sm">
@@ -119,7 +134,9 @@ function RecordsPage() {
                     <p className="text-xs text-muted-foreground uppercase">Anexos</p>
                     <ul className="mt-1 space-y-1 text-sm">
                       {selected.attachments.map((a) => (
-                        <li key={a} className="rounded-md bg-muted px-3 py-2">{a}</li>
+                        <li key={a} className="rounded-md bg-muted px-3 py-2">
+                          {a}
+                        </li>
                       ))}
                     </ul>
                   </div>
