@@ -15,12 +15,15 @@ import {
   Wallet,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import type { LinkProps } from "@tanstack/react-router";
+
+type To = NonNullable<LinkProps["to"]>;
 
 export interface NavItem {
   label: string;
-  to: string;
+  to: To;
   icon: LucideIcon;
-  children?: { label: string; to: string; icon: LucideIcon }[];
+  children?: { label: string; to: To; icon: LucideIcon }[];
 }
 
 export const navGroups: { title: string; items: NavItem[] }[] = [
