@@ -82,7 +82,7 @@ function DashboardPage() {
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           <StatCard
             label="Atendimentos hoje"
-            value={String(today.length || 24)}
+            value="24"
             icon={CalendarCheck}
             trend={{ value: "+12%", positive: true }}
             hint="vs. semana passada"
@@ -96,7 +96,7 @@ function DashboardPage() {
           />
           <StatCard
             label="Confirmações pendentes"
-            value={String(pendingConfirmations || 7)}
+            value="7"
             icon={Clock3}
             trend={{ value: "-3", positive: true }}
             hint="desde ontem"
