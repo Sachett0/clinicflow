@@ -64,7 +64,7 @@ function SettingsPage() {
   return (
     <>
       <PageHeader title="Configurações" description={`Clínica atual: ${clinic.name}`} />
-      <Tabs defaultValue="clinica">
+      <Tabs defaultValue="clínica">
         <TabsList className="flex h-auto w-full flex-wrap justify-start">
           {["Clínica", "Usuários", "Profissionais", "Salas", "Serviços", "Permissões", "WhatsApp", "Assinaturas", "Notificações", "Financeiro", "Segurança"].map((t) => (
             <TabsTrigger key={t} value={t.toLowerCase()}>{t}</TabsTrigger>
@@ -72,9 +72,6 @@ function SettingsPage() {
         </TabsList>
 
         <TabsContent value="clínica" className="mt-4">
-          <ClinicForm onSave={save} />
-        </TabsContent>
-        <TabsContent value="clinica" className="mt-4">
           <ClinicForm onSave={save} />
         </TabsContent>
 
