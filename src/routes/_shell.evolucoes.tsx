@@ -12,13 +12,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ConfirmDialog } from "@/components/common/ConfirmDialog";
 import { medicalRecordService, patientService, professionalService } from "@/services";
 import { TODAY, formatDate } from "@/lib/format";
@@ -135,10 +129,7 @@ function EvolutionsPage() {
                     key={p}
                     className="flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm"
                   >
-                    <Checkbox
-                      checked={procedures.includes(p)}
-                      onCheckedChange={() => toggleProcedure(p)}
-                    />
+                    <Checkbox checked={procedures.includes(p)} onCheckedChange={() => toggleProcedure(p)} />
                     {p}
                   </label>
                 ))}
@@ -160,9 +151,7 @@ function EvolutionsPage() {
             {finalized ? (
               <Button
                 variant="outline"
-                onClick={() =>
-                  toast.success("Solicitação de correção enviada ao responsável técnico.")
-                }
+                onClick={() => toast.success("Solicitação de correção enviada ao responsável técnico.")}
               >
                 Solicitar correção
               </Button>

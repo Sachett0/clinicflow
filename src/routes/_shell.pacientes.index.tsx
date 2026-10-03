@@ -10,13 +10,7 @@ import { EmptyState } from "@/components/common/EmptyState";
 import { TableSkeleton } from "@/components/common/LoadingState";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { NewPatientDialog } from "@/modules/patients/NewPatientDialog";
 import { patientService, professionalService } from "@/services";
 import { formatDate } from "@/lib/format";
@@ -147,11 +141,7 @@ function PatientsPage() {
                   {rows.map((p) => (
                     <tr key={p.id} className="transition-colors hover:bg-muted/40">
                       <td className="px-5 py-3">
-                        <Link
-                          to="/pacientes/$id"
-                          params={{ id: p.id }}
-                          className="flex items-center gap-3"
-                        >
+                        <Link to="/pacientes/$id" params={{ id: p.id }} className="flex items-center gap-3">
                           <PatientAvatar name={p.name} tone={p.avatarTone} size="sm" />
                           <span>
                             <span className="block font-medium text-foreground">{p.name}</span>
@@ -166,9 +156,7 @@ function PatientsPage() {
                       <td className="px-5 py-3 text-muted-foreground">
                         {p.nextAppointment ? formatDate(p.nextAppointment) : "—"}
                       </td>
-                      <td className="px-5 py-3 text-muted-foreground">
-                        {profName(p.professionalId)}
-                      </td>
+                      <td className="px-5 py-3 text-muted-foreground">{profName(p.professionalId)}</td>
                       <td className="px-5 py-3">
                         <StatusBadge status={p.status} />
                       </td>
@@ -182,11 +170,7 @@ function PatientsPage() {
             <ul className="divide-y divide-border md:hidden">
               {rows.map((p) => (
                 <li key={p.id} className="p-4">
-                  <Link
-                    to="/pacientes/$id"
-                    params={{ id: p.id }}
-                    className="flex items-start gap-3"
-                  >
+                  <Link to="/pacientes/$id" params={{ id: p.id }} className="flex items-start gap-3">
                     <PatientAvatar name={p.name} tone={p.avatarTone} size="sm" />
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center justify-between gap-2">

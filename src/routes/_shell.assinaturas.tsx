@@ -21,8 +21,7 @@ export const Route = createFileRoute("/_shell/assinaturas")({
       { title: "Assinatura eletrônica · ClinicFlow" },
       {
         name: "description",
-        content:
-          "Envio de documentos para assinatura eletrônica com signatários e trilha de eventos.",
+        content: "Envio de documentos para assinatura eletrônica com signatários e trilha de eventos.",
       },
       { property: "og:title", content: "Assinatura eletrônica · ClinicFlow" },
       { property: "og:description", content: "Fluxo completo de assinatura com rastreabilidade." },
@@ -54,8 +53,8 @@ function SignaturesPage() {
       <div className="flex items-start gap-2 rounded-xl border border-border bg-info-soft p-4 text-sm text-info">
         <Info className="mt-0.5 size-4 shrink-0" />
         <p>
-          Este módulo está preparado para integração com um provedor externo especializado em
-          assinatura eletrônica com validade jurídica. O protótipo não coleta assinaturas reais.
+          Este módulo está preparado para integração com um provedor externo especializado em assinatura
+          eletrônica com validade jurídica. O protótipo não coleta assinaturas reais.
         </p>
       </div>
 
@@ -106,10 +105,7 @@ function SignaturesPage() {
               ) : (
                 <ul className="mt-2 divide-y divide-border rounded-lg border border-border">
                   {selected.signers.map((s) => (
-                    <li
-                      key={s.email}
-                      className="flex flex-wrap items-center justify-between gap-2 px-4 py-3"
-                    >
+                    <li key={s.email} className="flex flex-wrap items-center justify-between gap-2 px-4 py-3">
                       <div>
                         <p className="text-sm font-medium">{s.name}</p>
                         <p className="text-xs text-muted-foreground">
@@ -134,11 +130,7 @@ function SignaturesPage() {
                 </div>
                 <div className="space-y-1">
                   <Label className="text-xs">E-mail</Label>
-                  <Input
-                    type="email"
-                    value={signerEmail}
-                    onChange={(e) => setSignerEmail(e.target.value)}
-                  />
+                  <Input type="email" value={signerEmail} onChange={(e) => setSignerEmail(e.target.value)} />
                 </div>
                 <Button
                   className="self-end"

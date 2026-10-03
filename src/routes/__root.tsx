@@ -78,14 +78,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "ClinicFlow — Gestão para clínicas de saúde" },
       {
         name: "description",
-        content:
-          "Agenda, prontuário, documentos, WhatsApp e financeiro para clínicas de fisioterapia.",
+        content: "Agenda, prontuário, documentos, WhatsApp e financeiro para clínicas de fisioterapia.",
       },
       { property: "og:title", content: "ClinicFlow — Gestão para clínicas de saúde" },
       {
         property: "og:description",
-        content:
-          "Agenda, prontuário, documentos, WhatsApp e financeiro para clínicas de fisioterapia.",
+        content: "Agenda, prontuário, documentos, WhatsApp e financeiro para clínicas de fisioterapia.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

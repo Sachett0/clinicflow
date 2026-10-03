@@ -10,13 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  professionalService,
-  roomService,
-  serviceCatalog,
-  tenantService,
-  userService,
-} from "@/services";
+import { professionalService, roomService, serviceCatalog, tenantService, userService } from "@/services";
 import { currencyPrecise } from "@/lib/format";
 
 export const Route = createFileRoute("/_shell/configuracoes")({
@@ -110,10 +104,7 @@ function SettingsPage() {
           >
             <ul className="divide-y divide-border">
               {(users.data ?? []).map((u) => (
-                <li
-                  key={u.id}
-                  className="flex flex-wrap items-center justify-between gap-2 px-5 py-3"
-                >
+                <li key={u.id} className="flex flex-wrap items-center justify-between gap-2 px-5 py-3">
                   <div>
                     <p className="text-sm font-medium">{u.name}</p>
                     <p className="text-xs text-muted-foreground">
@@ -121,9 +112,7 @@ function SettingsPage() {
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="rounded-md bg-muted px-2 py-0.5 text-xs">
-                      {roleLabel(u.role)}
-                    </span>
+                    <span className="rounded-md bg-muted px-2 py-0.5 text-xs">{roleLabel(u.role)}</span>
                     <StatusBadge status={u.active ? "ativo" : "inativo"} />
                   </div>
                 </li>
@@ -324,11 +313,7 @@ function Integration({
   onSave: () => void;
 }) {
   return (
-    <SectionCard
-      title={title}
-      description={description}
-      actions={<StatusBadge status="pendente" />}
-    >
+    <SectionCard title={title} description={description} actions={<StatusBadge status="pendente" />}>
       <div className="grid gap-4 sm:grid-cols-2">
         {fields.map((f) => (
           <div key={f} className="space-y-2">

@@ -10,13 +10,7 @@ import { EmptyState } from "@/components/common/EmptyState";
 import { TableSkeleton } from "@/components/common/LoadingState";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { documentService, patientService } from "@/services";
 import { formatDate } from "@/lib/format";
 
@@ -26,8 +20,7 @@ export const Route = createFileRoute("/_shell/documentos")({
       { title: "Documentos · ClinicFlow" },
       {
         name: "description",
-        content:
-          "Biblioteca de termos, contratos, laudos e declarações com controle de assinatura.",
+        content: "Biblioteca de termos, contratos, laudos e declarações com controle de assinatura.",
       },
       { property: "og:title", content: "Documentos · ClinicFlow" },
       {
@@ -59,8 +52,7 @@ function DocumentsPage() {
 
   const rows = (documents.data ?? []).filter(
     (d) =>
-      d.name.toLowerCase().includes(term.toLowerCase()) &&
-      (category === "todas" || d.category === category),
+      d.name.toLowerCase().includes(term.toLowerCase()) && (category === "todas" || d.category === category),
   );
 
   return (
@@ -77,11 +69,7 @@ function DocumentsPage() {
 
       <SectionCard bodyClassName="p-4">
         <div className="flex flex-col gap-3 sm:flex-row">
-          <Input
-            placeholder="Buscar documento"
-            value={term}
-            onChange={(e) => setTerm(e.target.value)}
-          />
+          <Input placeholder="Buscar documento" value={term} onChange={(e) => setTerm(e.target.value)} />
           <Select value={category} onValueChange={setCategory}>
             <SelectTrigger className="sm:w-56">
               <SelectValue />
@@ -129,16 +117,14 @@ function DocumentsPage() {
                         <p className="font-medium">{d.name}</p>
                         <p className="text-xs text-muted-foreground capitalize">{d.category}</p>
                       </td>
-                      <td className="px-5 py-3 text-muted-foreground">
-                        {patientName(d.patientId)}
-                      </td>
+                      <td className="px-5 py-3 text-muted-foreground">{patientName(d.patientId)}</td>
                       <td className="px-5 py-3 text-muted-foreground">{formatDate(d.createdAt)}</td>
                       <td className="px-5 py-3">
                         <StatusBadge status={d.status} />
                       </td>
                       <td className="px-5 py-3 text-xs text-muted-foreground">
-                        {d.signers.filter((s) => s.status === "assinado").length}/
-                        {d.signers.length || 0} assinaram
+                        {d.signers.filter((s) => s.status === "assinado").length}/{d.signers.length || 0}{" "}
+                        assinaram
                       </td>
                       <td className="px-5 py-3">
                         <div className="flex justify-end gap-1">

@@ -1,13 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { useState } from "react";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { StatusBadge } from "@/components/common/StatusBadge";
 import { ConfirmDialog } from "@/components/common/ConfirmDialog";
@@ -64,13 +58,8 @@ export function AppointmentDrawer({
                 </dl>
 
                 <div className="grid gap-2 sm:grid-cols-2">
-                  <Button onClick={() => toast.success("Atendimento confirmado.")}>
-                    Confirmar
-                  </Button>
-                  <Button
-                    variant="secondary"
-                    onClick={() => toast.success("Atendimento iniciado.")}
-                  >
+                  <Button onClick={() => toast.success("Atendimento confirmado.")}>Confirmar</Button>
+                  <Button variant="secondary" onClick={() => toast.success("Atendimento iniciado.")}>
                     Iniciar atendimento
                   </Button>
                   <Button

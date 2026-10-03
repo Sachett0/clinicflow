@@ -23,8 +23,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "ClinicFlow — Gestão completa para clínicas de saúde" },
       {
         property: "og:description",
-        content:
-          "Agenda, prontuário, documentos, comunicação e financeiro para clínicas de fisioterapia.",
+        content: "Agenda, prontuário, documentos, comunicação e financeiro para clínicas de fisioterapia.",
       },
     ],
   }),
@@ -123,17 +122,15 @@ function LoginPage() {
             </div>
 
             <Button type="submit" className="w-full" disabled={form.formState.isSubmitting}>
-              {form.formState.isSubmitting ? (
-                <Loader2 className="mr-2 size-4 animate-spin" />
-              ) : null}
+              {form.formState.isSubmitting ? <Loader2 className="mr-2 size-4 animate-spin" /> : null}
               Entrar
             </Button>
 
             <div className="flex items-start gap-2 rounded-lg border border-dashed border-border p-3 text-xs text-muted-foreground">
               <ShieldCheck className="mt-0.5 size-4 shrink-0 text-primary" />
               <span>
-                Verificação em duas etapas (MFA) disponível para ativação nas configurações de
-                segurança da clínica.
+                Verificação em duas etapas (MFA) disponível para ativação nas configurações de segurança da
+                clínica.
               </span>
             </div>
           </form>
@@ -147,9 +144,7 @@ function LoginPage() {
       <div className="hidden flex-col justify-between bg-primary p-12 text-primary-foreground lg:flex">
         <p className="text-sm opacity-80">ClinicFlow para clínicas de fisioterapia e saúde</p>
         <div className="space-y-6">
-          <h2 className="text-3xl leading-tight font-semibold">
-            Toda a operação da clínica em um fluxo só.
-          </h2>
+          <h2 className="text-3xl leading-tight font-semibold">Toda a operação da clínica em um fluxo só.</h2>
           <ul className="space-y-3 text-sm opacity-90">
             <li>Agenda por profissional, sala e serviço com confirmação automática.</li>
             <li>Prontuário eletrônico com avaliações, evoluções e planos terapêuticos.</li>

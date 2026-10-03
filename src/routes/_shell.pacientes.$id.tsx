@@ -197,19 +197,11 @@ function PatientProfilePage() {
         </TabsContent>
 
         <TabsContent value="avaliacoes" className="mt-4">
-          <RecordList
-            items={evaluations}
-            emptyLabel="Nenhuma avaliação registrada."
-            profName={profName}
-          />
+          <RecordList items={evaluations} emptyLabel="Nenhuma avaliação registrada." profName={profName} />
         </TabsContent>
 
         <TabsContent value="evolucoes" className="mt-4">
-          <RecordList
-            items={evolutions}
-            emptyLabel="Nenhuma evolução registrada."
-            profName={profName}
-          />
+          <RecordList items={evolutions} emptyLabel="Nenhuma evolução registrada." profName={profName} />
         </TabsContent>
 
         <TabsContent value="plano" className="mt-4">
@@ -219,10 +211,7 @@ function PatientProfilePage() {
                 <Info label="Início" value={formatDate(plan.data.startDate)} />
                 <Info label="Previsão de término" value={formatDate(plan.data.endDate)} />
                 <Info label="Frequência" value={plan.data.frequency} />
-                <Info
-                  label="Sessões"
-                  value={`${plan.data.usedSessions}/${plan.data.totalSessions}`}
-                />
+                <Info label="Sessões" value={`${plan.data.usedSessions}/${plan.data.totalSessions}`} />
               </div>
               <div className="mt-6 space-y-4">
                 {plan.data.goals.map((g) => (
@@ -254,15 +243,10 @@ function PatientProfilePage() {
             ) : (
               <ul className="divide-y divide-border">
                 {patientDocs.map((d) => (
-                  <li
-                    key={d.id}
-                    className="flex flex-wrap items-center justify-between gap-2 px-5 py-3"
-                  >
+                  <li key={d.id} className="flex flex-wrap items-center justify-between gap-2 px-5 py-3">
                     <div>
                       <p className="text-sm font-medium">{d.name}</p>
-                      <p className="text-xs text-muted-foreground">
-                        Criado em {formatDate(d.createdAt)}
-                      </p>
+                      <p className="text-xs text-muted-foreground">Criado em {formatDate(d.createdAt)}</p>
                     </div>
                     <StatusBadge status={d.status} />
                   </li>
@@ -281,10 +265,7 @@ function PatientProfilePage() {
             ) : (
               <ul className="divide-y divide-border">
                 {patientCharges.map((c) => (
-                  <li
-                    key={c.id}
-                    className="flex flex-wrap items-center justify-between gap-2 px-5 py-3"
-                  >
+                  <li key={c.id} className="flex flex-wrap items-center justify-between gap-2 px-5 py-3">
                     <div>
                       <p className="text-sm font-medium">{c.description}</p>
                       <p className="text-xs text-muted-foreground">
@@ -311,10 +292,7 @@ function PatientProfilePage() {
             ) : (
               <ul className="divide-y divide-border">
                 {(appointments.data ?? []).map((a) => (
-                  <li
-                    key={a.id}
-                    className="flex flex-wrap items-center justify-between gap-2 px-5 py-3"
-                  >
+                  <li key={a.id} className="flex flex-wrap items-center justify-between gap-2 px-5 py-3">
                     <div>
                       <p className="text-sm font-medium">
                         {formatDate(a.date)} · {a.start}

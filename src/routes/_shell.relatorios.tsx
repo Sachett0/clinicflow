@@ -89,9 +89,7 @@ function ReportsPage() {
         actions={
           <Button
             variant="outline"
-            onClick={() =>
-              toast.success("Exportação iniciada.", { description: `${category} · CSV` })
-            }
+            onClick={() => toast.success("Exportação iniciada.", { description: `${category} · CSV` })}
           >
             <Download className="mr-1 size-4" /> Exportar
           </Button>
@@ -134,11 +132,7 @@ function ReportsPage() {
           ) : (
             <ResponsiveContainer width="100%" height={260}>
               <BarChart data={series.data ?? []}>
-                <CartesianGrid
-                  strokeDasharray="3 3"
-                  vertical={false}
-                  stroke="var(--color-border)"
-                />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--color-border)" />
                 <XAxis
                   dataKey="day"
                   fontSize={12}
@@ -165,11 +159,7 @@ function ReportsPage() {
           ) : (
             <ResponsiveContainer width="100%" height={260}>
               <LineChart data={revenue.data ?? []}>
-                <CartesianGrid
-                  strokeDasharray="3 3"
-                  vertical={false}
-                  stroke="var(--color-border)"
-                />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--color-border)" />
                 <XAxis
                   dataKey="month"
                   fontSize={12}
@@ -185,18 +175,8 @@ function ReportsPage() {
                   tickFormatter={(v: number) => `${v / 1000}k`}
                 />
                 <Tooltip contentStyle={tooltipStyle} formatter={(v: number) => currency(v)} />
-                <Line
-                  type="monotone"
-                  dataKey="receita"
-                  stroke="var(--color-chart-1)"
-                  strokeWidth={2}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="recebido"
-                  stroke="var(--color-chart-2)"
-                  strokeWidth={2}
-                />
+                <Line type="monotone" dataKey="receita" stroke="var(--color-chart-1)" strokeWidth={2} />
+                <Line type="monotone" dataKey="recebido" stroke="var(--color-chart-2)" strokeWidth={2} />
               </LineChart>
             </ResponsiveContainer>
           )}

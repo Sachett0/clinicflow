@@ -10,13 +10,7 @@ import { BlockSkeleton } from "@/components/common/LoadingState";
 import { Timeline } from "@/components/common/Timeline";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { medicalRecordService, patientService, professionalService } from "@/services";
 import { formatDate } from "@/lib/format";
 import type { MedicalRecordEntry } from "@/data/types";
@@ -70,11 +64,7 @@ function RecordsPage() {
       />
 
       <SectionCard bodyClassName="p-4">
-        <Input
-          placeholder="Buscar por paciente"
-          value={term}
-          onChange={(e) => setTerm(e.target.value)}
-        />
+        <Input placeholder="Buscar por paciente" value={term} onChange={(e) => setTerm(e.target.value)} />
       </SectionCard>
 
       <SectionCard title="Linha do tempo clínica">

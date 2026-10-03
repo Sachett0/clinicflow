@@ -21,9 +21,7 @@ export function SidebarNav({
   const [openGroups, setOpenGroups] = useState<string[]>(["Prontuário"]);
 
   const toggleGroup = (label: string) =>
-    setOpenGroups((prev) =>
-      prev.includes(label) ? prev.filter((l) => l !== label) : [...prev, label],
-    );
+    setOpenGroups((prev) => (prev.includes(label) ? prev.filter((l) => l !== label) : [...prev, label]));
 
   const isActive = (to: string) => pathname === to || pathname.startsWith(`${to}/`);
 
@@ -39,11 +37,7 @@ export function SidebarNav({
             onClick={onToggle}
             aria-label={collapsed ? "Expandir menu" : "Recolher menu"}
           >
-            {collapsed ? (
-              <PanelLeftOpen className="size-4" />
-            ) : (
-              <PanelLeftClose className="size-4" />
-            )}
+            {collapsed ? <PanelLeftOpen className="size-4" /> : <PanelLeftClose className="size-4" />}
           </Button>
         ) : null}
       </div>
@@ -82,9 +76,7 @@ export function SidebarNav({
                         aria-label={`Alternar submenu ${item.label}`}
                         className="rounded-md p-1.5 text-muted-foreground hover:bg-sidebar-accent"
                       >
-                        <ChevronDown
-                          className={cn("size-4 transition-transform", open && "rotate-180")}
-                        />
+                        <ChevronDown className={cn("size-4 transition-transform", open && "rotate-180")} />
                       </button>
                     ) : null}
                   </div>
@@ -97,8 +89,7 @@ export function SidebarNav({
                           onClick={onNavigate}
                           className={cn(
                             "flex items-center gap-2 rounded-lg px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
-                            isActive(child.to) &&
-                              "bg-sidebar-accent text-sidebar-accent-foreground",
+                            isActive(child.to) && "bg-sidebar-accent text-sidebar-accent-foreground",
                           )}
                         >
                           <child.icon className="size-3.5" />

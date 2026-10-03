@@ -15,8 +15,7 @@ export const Route = createFileRoute("/_shell/auditoria")({
       { title: "Logs de auditoria · ClinicFlow" },
       {
         name: "description",
-        content:
-          "Registro de ações dos usuários sobre pacientes, prontuários, documentos e financeiro.",
+        content: "Registro de ações dos usuários sobre pacientes, prontuários, documentos e financeiro.",
       },
       { property: "og:title", content: "Logs de auditoria · ClinicFlow" },
       {
@@ -73,9 +72,7 @@ function AuditPage() {
                     <td className="px-5 py-3 text-muted-foreground">{l.at}</td>
                     <td className="px-5 py-3 font-medium">{l.user}</td>
                     <td className="px-5 py-3">{l.action}</td>
-                    <td className="px-5 py-3 font-mono text-xs text-muted-foreground">
-                      {l.resource}
-                    </td>
+                    <td className="px-5 py-3 font-mono text-xs text-muted-foreground">{l.resource}</td>
                     <td className="px-5 py-3 font-mono text-xs text-muted-foreground">{l.ip}</td>
                     <td className="px-5 py-3">
                       <StatusBadge status={l.result} />

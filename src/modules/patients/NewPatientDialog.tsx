@@ -161,9 +161,7 @@ export function NewPatientDialog({ trigger }: { trigger?: ReactNode }) {
               Cancelar
             </Button>
             <Button type="submit" disabled={form.formState.isSubmitting}>
-              {form.formState.isSubmitting ? (
-                <Loader2 className="mr-2 size-4 animate-spin" />
-              ) : null}
+              {form.formState.isSubmitting ? <Loader2 className="mr-2 size-4 animate-spin" /> : null}
               Salvar paciente
             </Button>
           </DialogFooter>

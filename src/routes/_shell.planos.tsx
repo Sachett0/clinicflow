@@ -77,9 +77,7 @@ function PlansPage() {
                   <Info label="Sessões" value={`${plan.usedSessions} de ${plan.totalSessions}`} />
                 </div>
                 <Progress value={sessionPct} className="mt-4" />
-                <p className="mt-1 text-xs text-muted-foreground">
-                  {sessionPct}% das sessões realizadas
-                </p>
+                <p className="mt-1 text-xs text-muted-foreground">{sessionPct}% das sessões realizadas</p>
 
                 <div className="mt-5 space-y-3">
                   {plan.goals.map((g) => (

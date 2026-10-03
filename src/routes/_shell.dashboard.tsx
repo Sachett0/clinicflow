@@ -35,8 +35,7 @@ export const Route = createFileRoute("/_shell/dashboard")({
       { title: "Dashboard · ClinicFlow" },
       {
         name: "description",
-        content:
-          "Indicadores de atendimentos, pacientes ativos, confirmações e faturamento da clínica.",
+        content: "Indicadores de atendimentos, pacientes ativos, confirmações e faturamento da clínica.",
       },
       { property: "og:title", content: "Dashboard · ClinicFlow" },
       {
@@ -66,13 +65,10 @@ function DashboardPage() {
   });
 
   const today = (appointments.data ?? []).filter((a) => a.date === TODAY);
-  const pendingConfirmations = (appointments.data ?? []).filter(
-    (a) => a.status === "agendado",
-  ).length;
+  const pendingConfirmations = (appointments.data ?? []).filter((a) => a.status === "agendado").length;
   const activePatients = (patients.data ?? []).filter((p) => p.status === "ativo").length;
   const patientName = (id: string) => patients.data?.find((p) => p.id === id)?.name ?? "—";
-  const professionalName = (id: string) =>
-    professionals.data?.find((p) => p.id === id)?.name ?? "—";
+  const professionalName = (id: string) => professionals.data?.find((p) => p.id === id)?.name ?? "—";
 
   const upcoming = (appointments.data ?? [])
     .filter((a) => a.date > TODAY)
@@ -138,11 +134,7 @@ function DashboardPage() {
           ) : (
             <ResponsiveContainer width="100%" height={260}>
               <BarChart data={series.data ?? []}>
-                <CartesianGrid
-                  strokeDasharray="3 3"
-                  vertical={false}
-                  stroke="var(--color-border)"
-                />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--color-border)" />
                 <XAxis
                   dataKey="day"
                   stroke="var(--color-muted-foreground)"
@@ -183,11 +175,7 @@ function DashboardPage() {
                     <stop offset="100%" stopColor="var(--color-chart-1)" stopOpacity={0} />
                   </linearGradient>
                 </defs>
-                <CartesianGrid
-                  strokeDasharray="3 3"
-                  vertical={false}
-                  stroke="var(--color-border)"
-                />
+                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--color-border)" />
                 <XAxis
                   dataKey="month"
                   stroke="var(--color-muted-foreground)"

@@ -169,8 +169,7 @@ export interface TherapyPlan extends TenantScoped {
   goals: TherapyGoal[];
 }
 
-export type DocumentStatus =
-  "rascunho" | "enviado" | "aguardando" | "assinado" | "recusado" | "expirado";
+export type DocumentStatus = "rascunho" | "enviado" | "aguardando" | "assinado" | "recusado" | "expirado";
 
 export type DocumentCategory =
   "termos" | "contratos" | "avaliacoes" | "declaracoes" | "relatorios" | "outros";

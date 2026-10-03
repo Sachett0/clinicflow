@@ -19,13 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import {
   appointmentService,
   patientService,
@@ -170,8 +164,8 @@ export function NewAppointmentDialog({ trigger }: { trigger?: ReactNode }) {
             <div className="flex items-start gap-2 rounded-lg bg-warning-soft p-3 text-xs text-warning-foreground">
               <AlertTriangle className="mt-0.5 size-4 shrink-0" />
               <span>
-                Conflito de horário: já existe um atendimento às {conflict.start} para este
-                profissional ou sala.
+                Conflito de horário: já existe um atendimento às {conflict.start} para este profissional ou
+                sala.
               </span>
             </div>
           ) : null}
@@ -186,9 +180,7 @@ export function NewAppointmentDialog({ trigger }: { trigger?: ReactNode }) {
               Cancelar
             </Button>
             <Button type="submit" disabled={form.formState.isSubmitting}>
-              {form.formState.isSubmitting ? (
-                <Loader2 className="mr-2 size-4 animate-spin" />
-              ) : null}
+              {form.formState.isSubmitting ? <Loader2 className="mr-2 size-4 animate-spin" /> : null}
               Salvar agendamento
             </Button>
           </DialogFooter>

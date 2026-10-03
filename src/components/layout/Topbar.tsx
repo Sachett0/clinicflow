@@ -118,9 +118,7 @@ export function Topbar() {
               </span>
               <span className="hidden text-left sm:block">
                 <span className="block text-sm leading-tight font-medium">{user.name}</span>
-                <span className="block text-xs leading-tight text-muted-foreground">
-                  {clinic.name}
-                </span>
+                <span className="block text-xs leading-tight text-muted-foreground">{clinic.name}</span>
               </span>
             </button>
           </DropdownMenuTrigger>
@@ -128,9 +126,7 @@ export function Topbar() {
             <DropdownMenuLabel>
               <p className="text-sm font-medium">{user.name}</p>
               <p className="text-xs font-normal text-muted-foreground">{user.email}</p>
-              <p className="mt-1 text-xs font-normal text-muted-foreground">
-                Clínica atual: {clinic.name}
-              </p>
+              <p className="mt-1 text-xs font-normal text-muted-foreground">Clínica atual: {clinic.name}</p>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem onSelect={() => navigate({ to: "/configuracoes" })}>

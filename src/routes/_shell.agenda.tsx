@@ -9,13 +9,7 @@ import { EmptyState } from "@/components/common/EmptyState";
 import { BlockSkeleton } from "@/components/common/LoadingState";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { NewAppointmentDialog } from "@/modules/appointments/NewAppointmentDialog";
 import { AppointmentDrawer, type AppointmentView } from "@/modules/appointments/AppointmentDrawer";
 import {
@@ -83,9 +77,7 @@ function AgendaPage() {
       (serviceId === "todos" || a.serviceId === serviceId),
   );
 
-  const dayItems = filtered
-    .filter((a) => a.date === date)
-    .sort((a, b) => a.start.localeCompare(b.start));
+  const dayItems = filtered.filter((a) => a.date === date).sort((a, b) => a.start.localeCompare(b.start));
   const loading = appointments.isLoading || patients.isLoading;
 
   return (
@@ -120,9 +112,7 @@ function AgendaPage() {
               variant="outline"
               size="icon"
               aria-label="Próximo dia"
-              onClick={() =>
-                setDate(WEEK[Math.min(WEEK.length - 1, WEEK.indexOf(date) + 1)] ?? date)
-              }
+              onClick={() => setDate(WEEK[Math.min(WEEK.length - 1, WEEK.indexOf(date) + 1)] ?? date)}
             >
               <ChevronRight className="size-4" />
             </Button>
@@ -164,9 +154,7 @@ function AgendaPage() {
                 icon={CalendarDays}
                 title="Não há atendimentos para este período."
                 description="Ajuste os filtros ou crie um novo agendamento."
-                action={
-                  <NewAppointmentDialog trigger={<Button size="sm">+ Novo agendamento</Button>} />
-                }
+                action={<NewAppointmentDialog trigger={<Button size="sm">+ Novo agendamento</Button>} />}
               />
             </div>
           ) : (
@@ -175,9 +163,7 @@ function AgendaPage() {
                 const slot = dayItems.filter((a) => a.start === hour);
                 return (
                   <div key={hour} className="flex gap-4 px-5 py-3">
-                    <span className="w-14 pt-1 text-xs font-medium text-muted-foreground">
-                      {hour}
-                    </span>
+                    <span className="w-14 pt-1 text-xs font-medium text-muted-foreground">{hour}</span>
                     <div className="flex-1 space-y-2">
                       {slot.length === 0 ? (
                         <p className="py-2 text-xs text-muted-foreground/70">Horário livre</p>
@@ -208,12 +194,7 @@ function AgendaPage() {
                       <p className="text-xs text-muted-foreground/70">Sem atendimentos</p>
                     ) : (
                       items.map((a) => (
-                        <AppointmentCard
-                          key={a.id}
-                          item={a}
-                          compact
-                          onClick={() => setSelected(a)}
-                        />
+                        <AppointmentCard key={a.id} item={a} compact onClick={() => setSelected(a)} />
                       ))
                     )}
                   </div>
@@ -262,10 +243,7 @@ function AgendaPage() {
         </SectionCard>
       )}
 
-      <AppointmentDrawer
-        appointment={selected}
-        onOpenChange={(open) => !open && setSelected(null)}
-      />
+      <AppointmentDrawer appointment={selected} onOpenChange={(open) => !open && setSelected(null)} />
     </>
   );
 }

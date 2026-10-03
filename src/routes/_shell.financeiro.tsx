@@ -11,13 +11,7 @@ import { EmptyState } from "@/components/common/EmptyState";
 import { TableSkeleton } from "@/components/common/LoadingState";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { financialService, patientService } from "@/services";
 import { currencyPrecise, currency, formatDate } from "@/lib/format";
@@ -57,9 +51,7 @@ function FinancialPage() {
       <PageHeader
         title="Financeiro"
         description="Acompanhe receitas, recebimentos e pacotes de sessões."
-        actions={
-          <Button onClick={() => toast.success("Nova cobrança criada.")}>+ Nova cobrança</Button>
-        }
+        actions={<Button onClick={() => toast.success("Nova cobrança criada.")}>+ Nova cobrança</Button>}
       />
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
@@ -133,9 +125,7 @@ function FinancialPage() {
                           <td className="px-5 py-3 font-medium">{patientName(c.patientId)}</td>
                           <td className="px-5 py-3 text-muted-foreground">{c.description}</td>
                           <td className="px-5 py-3 font-semibold">{currencyPrecise(c.amount)}</td>
-                          <td className="px-5 py-3 text-muted-foreground">
-                            {formatDate(c.dueDate)}
-                          </td>
+                          <td className="px-5 py-3 text-muted-foreground">{formatDate(c.dueDate)}</td>
                           <td className="px-5 py-3">
                             <StatusBadge status={c.status} />
                           </td>
@@ -178,9 +168,7 @@ function FinancialPage() {
                   <Progress value={pct} className="mt-3" />
                   <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
                     <span>Válido até {formatDate(p.validUntil)}</span>
-                    <span className="font-semibold text-foreground">
-                      {currencyPrecise(p.price)}
-                    </span>
+                    <span className="font-semibold text-foreground">{currencyPrecise(p.price)}</span>
                   </div>
                 </SectionCard>
               );

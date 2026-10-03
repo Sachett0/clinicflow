@@ -20,13 +20,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { evaluationService } from "@/services";
 import type { FieldType } from "@/data/types";
 import { formatDate } from "@/lib/format";
@@ -100,18 +94,10 @@ function EvaluationsPage() {
                 <span>Atualizado em {formatDate(t.updatedAt)}</span>
               </div>
               <div className="mt-4 flex gap-2">
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={() => toast.info(`Editando “${t.name}”.`)}
-                >
+                <Button size="sm" variant="outline" onClick={() => toast.info(`Editando “${t.name}”.`)}>
                   Editar campos
                 </Button>
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() => toast.success("Modelo duplicado.")}
-                >
+                <Button size="sm" variant="ghost" onClick={() => toast.success("Modelo duplicado.")}>
                   Duplicar
                 </Button>
               </div>
@@ -123,13 +109,7 @@ function EvaluationsPage() {
   );
 }
 
-function FormBuilderDialog({
-  open,
-  onOpenChange,
-}: {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-}) {
+function FormBuilderDialog({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
   const [name, setName] = useState("");
   const [fields, setFields] = useState<DraftField[]>([
     { id: "1", label: "Queixa principal", type: "texto-longo" },
@@ -178,10 +158,7 @@ function FormBuilderDialog({
             ) : (
               <ul className="space-y-2">
                 {fields.map((f, index) => (
-                  <li
-                    key={f.id}
-                    className="flex items-center gap-2 rounded-lg border border-border p-3"
-                  >
+                  <li key={f.id} className="flex items-center gap-2 rounded-lg border border-border p-3">
                     <GripVertical className="size-4 text-muted-foreground" />
                     <div className="flex-1">
                       <p className="text-sm font-medium">{f.label}</p>
