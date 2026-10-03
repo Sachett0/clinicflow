@@ -1,0 +1,25 @@
+# Banco de dados PostgreSQL para DESENVOLVIMENTO LOCAL.
+# Ligar:    npm run db:up      (ou: docker compose up -d)
+# Desligar: npm run db:down    (os dados continuam salvos no volume)
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: clinicflow-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-clinicflow}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-clinicflow_dev}
+      POSTGRES_DB: ${POSTGRES_DB:-clinicflow}
+    ports:
+      - "5432:5432"
+    volumes:
+      # Guarda os dados fora do container: sobrevivem a reinícios e a `db:down`.
+      - clinicflow-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  clinicflow-db-data:
