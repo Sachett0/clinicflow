@@ -26,6 +26,7 @@ import { Route as ShellProntuariosRouteImport } from './routes/_shell.prontuario
 import { Route as ShellRelatoriosRouteImport } from './routes/_shell.relatorios'
 import { Route as ShellPacientesIndexRouteImport } from './routes/_shell.pacientes.index'
 import { Route as ShellPacientesIdRouteImport } from './routes/_shell.pacientes.$id'
+import { Route as ApiAuthSplatRouteImport } from './routes/api.auth.$'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -111,6 +112,11 @@ const ShellPacientesIdRoute = ShellPacientesIdRouteImport.update({
   path: '/pacientes/$id',
   getParentRoute: () => ShellRoute,
 } as any)
+const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
+  id: '/api/auth/$',
+  path: '/api/auth/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -128,6 +134,7 @@ export interface FileRoutesByFullPath {
   '/prontuarios': typeof ShellProntuariosRoute
   '/relatorios': typeof ShellRelatoriosRoute
   '/pacientes/$id': typeof ShellPacientesIdRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
   '/pacientes/': typeof ShellPacientesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -146,6 +153,7 @@ export interface FileRoutesByTo {
   '/prontuarios': typeof ShellProntuariosRoute
   '/relatorios': typeof ShellRelatoriosRoute
   '/pacientes/$id': typeof ShellPacientesIdRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
   '/pacientes': typeof ShellPacientesIndexRoute
 }
 export interface FileRoutesById {
@@ -166,6 +174,7 @@ export interface FileRoutesById {
   '/_shell/prontuarios': typeof ShellProntuariosRoute
   '/_shell/relatorios': typeof ShellRelatoriosRoute
   '/_shell/pacientes/$id': typeof ShellPacientesIdRoute
+  '/api/auth/$': typeof ApiAuthSplatRoute
   '/_shell/pacientes/': typeof ShellPacientesIndexRoute
 }
 export interface FileRouteTypes {
@@ -186,6 +195,7 @@ export interface FileRouteTypes {
     | '/prontuarios'
     | '/relatorios'
     | '/pacientes/$id'
+    | '/api/auth/$'
     | '/pacientes/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -204,6 +214,7 @@ export interface FileRouteTypes {
     | '/prontuarios'
     | '/relatorios'
     | '/pacientes/$id'
+    | '/api/auth/$'
     | '/pacientes'
   id:
     | '__root__'
@@ -223,12 +234,14 @@ export interface FileRouteTypes {
     | '/_shell/prontuarios'
     | '/_shell/relatorios'
     | '/_shell/pacientes/$id'
+    | '/api/auth/$'
     | '/_shell/pacientes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ShellRoute: typeof ShellRouteWithChildren
+  ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -352,6 +365,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShellPacientesIdRouteImport
       parentRoute: typeof ShellRoute
     }
+    '/api/auth/$': {
+      id: '/api/auth/$'
+      path: '/api/auth/$'
+      fullPath: '/api/auth/$'
+      preLoaderRoute: typeof ApiAuthSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -396,6 +416,7 @@ const ShellRouteWithChildren = ShellRoute._addFileChildren(ShellRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ShellRoute: ShellRouteWithChildren,
+  ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
