@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { Link, createFileRoute, redirect, useNavigate } from "@tanstack/react-router";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
@@ -10,6 +10,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Logo } from "@/components/layout/Logo";
+import { getSessionFn } from "@/functions/session";
+import { authClient } from "@/lib/auth-client";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -27,6 +29,12 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
+  // Quem já está logado não precisa ver a tela de entrada.
+  beforeLoad: async () => {
+    if (await getSessionFn()) {
+      throw redirect({ to: "/dashboard" });
+    }
+  },
   component: LoginPage,
 });
 
@@ -43,16 +51,21 @@ function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
-    defaultValues: {
-      email: "lucas.andrade@clinicavitalis.com.br",
-      password: "demo1234",
-      keepConnected: true,
-    },
+    defaultValues: { email: "", password: "", keepConnected: true },
   });
 
   const onSubmit = async (values: FormValues) => {
-    await new Promise((r) => setTimeout(r, 700));
-    toast.success("Bem-vindo de volta!", { description: values.email });
+    const { error } = await authClient.signIn.email({
+      email: values.email,
+      password: values.password,
+      // Desmarcado: a sessão termina ao fechar o navegador.
+      rememberMe: values.keepConnected ?? false,
+    });
+    if (error) {
+      // Mensagem genérica de propósito: não revela se o e-mail existe ou não.
+      toast.error("E-mail ou senha incorretos.");
+      return;
+    }
     navigate({ to: "/dashboard" });
   };
 
@@ -135,8 +148,11 @@ function LoginPage() {
             </div>
           </form>
 
-          <p className="text-center text-xs text-muted-foreground">
-            Ambiente de demonstração — todos os dados exibidos são fictícios.
+          <p className="text-center text-sm text-muted-foreground">
+            Ainda não tem conta?{" "}
+            <Link to="/cadastro" className="font-medium text-primary hover:underline">
+              Cadastre sua clínica
+            </Link>
           </p>
         </div>
       </div>

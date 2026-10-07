@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ShellRouteImport } from './routes/_shell'
+import { Route as CadastroRouteImport } from './routes/cadastro'
 import { Route as ShellAgendaRouteImport } from './routes/_shell.agenda'
 import { Route as ShellAssinaturasRouteImport } from './routes/_shell.assinaturas'
 import { Route as ShellAuditoriaRouteImport } from './routes/_shell.auditoria'
@@ -35,6 +36,11 @@ const IndexRoute = IndexRouteImport.update({
 } as any)
 const ShellRoute = ShellRouteImport.update({
   id: '/_shell',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CadastroRoute = CadastroRouteImport.update({
+  id: '/cadastro',
+  path: '/cadastro',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShellAgendaRoute = ShellAgendaRouteImport.update({
@@ -120,6 +126,7 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cadastro': typeof CadastroRoute
   '/agenda': typeof ShellAgendaRoute
   '/assinaturas': typeof ShellAssinaturasRoute
   '/auditoria': typeof ShellAuditoriaRoute
@@ -139,6 +146,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cadastro': typeof CadastroRoute
   '/agenda': typeof ShellAgendaRoute
   '/assinaturas': typeof ShellAssinaturasRoute
   '/auditoria': typeof ShellAuditoriaRoute
@@ -160,6 +168,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_shell': typeof ShellRouteWithChildren
+  '/cadastro': typeof CadastroRoute
   '/_shell/agenda': typeof ShellAgendaRoute
   '/_shell/assinaturas': typeof ShellAssinaturasRoute
   '/_shell/auditoria': typeof ShellAuditoriaRoute
@@ -181,6 +190,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/cadastro'
     | '/agenda'
     | '/assinaturas'
     | '/auditoria'
@@ -200,6 +210,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/cadastro'
     | '/agenda'
     | '/assinaturas'
     | '/auditoria'
@@ -220,6 +231,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_shell'
+    | '/cadastro'
     | '/_shell/agenda'
     | '/_shell/assinaturas'
     | '/_shell/auditoria'
@@ -241,6 +253,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ShellRoute: typeof ShellRouteWithChildren
+  CadastroRoute: typeof CadastroRoute
   ApiAuthSplatRoute: typeof ApiAuthSplatRoute
 }
 
@@ -258,6 +271,13 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: '/'
       preLoaderRoute: typeof ShellRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cadastro': {
+      id: '/cadastro'
+      path: '/cadastro'
+      fullPath: '/cadastro'
+      preLoaderRoute: typeof CadastroRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_shell/agenda': {
@@ -416,6 +436,7 @@ const ShellRouteWithChildren = ShellRoute._addFileChildren(ShellRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ShellRoute: ShellRouteWithChildren,
+  CadastroRoute: CadastroRoute,
   ApiAuthSplatRoute: ApiAuthSplatRoute,
 }
 export const routeTree = rootRouteImport

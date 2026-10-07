@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate, useRouteContext } from "@tanstack/react-router";
 import { Bell, CircleHelp, LogOut, Menu, Search, Settings, UserRound } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -22,16 +22,26 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { SidebarNav } from "./Sidebar";
-import { authService, notificationService, tenantService } from "@/services";
+import { notificationService } from "@/services";
 import { patients } from "@/data/mock";
+import { authClient } from "@/lib/auth-client";
+import { initials } from "@/lib/format";
 import { navGroups } from "./nav-config";
 
 export function Topbar() {
   const navigate = useNavigate();
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const user = authService.currentUser();
-  const clinic = tenantService.current();
+  // Usuário real, carregado pelo `beforeLoad` do layout _shell.
+  const { session } = useRouteContext({ from: "/_shell" });
+  const user = { ...session.user, initials: initials(session.user.name) };
+  // Por enquanto mostra a primeira clínica; a troca de clínica vem a seguir.
+  const clinic = { name: session.clinics[0]?.clinicName ?? "Sem clínica" };
+
+  const signOut = async () => {
+    await authClient.signOut();
+    navigate({ to: "/" });
+  };
   const notifications = notificationService.listSync();
   const unread = notifications.filter((n) => !n.read).length;
 
@@ -136,7 +146,7 @@ export function Topbar() {
               <Settings className="mr-2 size-4" /> Configurações
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onSelect={() => navigate({ to: "/" })}>
+            <DropdownMenuItem onSelect={signOut}>
               <LogOut className="mr-2 size-4" /> Sair
             </DropdownMenuItem>
           </DropdownMenuContent>

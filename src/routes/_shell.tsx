@@ -1,10 +1,20 @@
-import { Outlet, createFileRoute } from "@tanstack/react-router";
+import { Outlet, createFileRoute, redirect } from "@tanstack/react-router";
 import { useState } from "react";
 import { SidebarNav } from "@/components/layout/Sidebar";
 import { Topbar } from "@/components/layout/Topbar";
+import { getSessionFn } from "@/functions/session";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_shell")({
+  // Roda ANTES de qualquer página interna abrir: sem login, volta para a tela de entrada.
+  beforeLoad: async () => {
+    const session = await getSessionFn();
+    if (!session) {
+      throw redirect({ to: "/" });
+    }
+    // Fica disponível para as páginas internas via useRouteContext.
+    return { session };
+  },
   component: ShellLayout,
 });
 

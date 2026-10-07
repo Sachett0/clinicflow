@@ -47,7 +47,16 @@ export const Route = createFileRoute("/_shell/dashboard")({
   component: DashboardPage,
 });
 
+function greeting() {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Bom dia";
+  if (hour < 18) return "Boa tarde";
+  return "Boa noite";
+}
+
 function DashboardPage() {
+  const { session } = Route.useRouteContext();
+  const firstName = session.user.name.split(" ")[0];
   const appointments = useQuery({ queryKey: ["appointments"], queryFn: appointmentService.list });
   const patients = useQuery({ queryKey: ["patients"], queryFn: patientService.list });
   const professionals = useQuery({
@@ -78,7 +87,7 @@ function DashboardPage() {
   return (
     <>
       <PageHeader
-        title="Bom dia, Lucas"
+        title={`${greeting()}, ${firstName}`}
         description="Acompanhe os principais indicadores da sua clínica."
         actions={
           <Button asChild>
